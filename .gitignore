@@ -1,0 +1,52 @@
+# --- Keep this folder but ignore its contents (scratch notebooks etc.) ---
+deletable/**
+!deletable/.gitkeep
+!deletable/README.md
+
+# --- Data: ignore everything except sample + README ---
+data/**
+!data/README.md
+!data/sample/**
+# (If you later want to version a tiny CSV/Parquet demo outside sample/, add explicit !whitelists)
+
+# Common large/binary data patterns (extra safety; many already covered by data/**)
+*.parquet
+*.pkl
+*.nc
+*.xlsx
+*.json.gz
+
+# --- Figures ---
+# Generated figures (reproducible) ignored:
+figures/**
+# Hand-edited figures & decks are kept:
+figures_edited/**
+# If you want to ignore PowerPoints even in edited figs, uncomment:
+# figures_edited/**/*.pptx
+
+# --- Notebooks ---
+.ipynb_checkpoints/
+# Hydrofunctions/other caches saved next to notebooks
+notebooks/*.json.gz
+
+# --- Python ---
+__pycache__/
+*.py[cod]
+*.egg-info/
+build/
+dist/
+
+# --- Environments & secrets ---
+.env
+.venv/
+venv/
+.envrc
+
+# --- Editors/OS ---
+.DS_Store
+.vscode/
+.idea/
+
+# --- Tests/coverage ---
+.coverage
+htmlcov/

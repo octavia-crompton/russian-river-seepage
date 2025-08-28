@@ -1,0 +1,13 @@
+name: russian-river-seepage
+channels:
+  - conda-forge
+dependencies:
+  - ipykernel
+  - matplotlib
+  - numpy
+  - pandas
+  - scipy
+  - seaborn
+  - scikit-learn
+  - jinja2
+prefix: /Users/octaviacrompton/anaconda3/envs/hydro
