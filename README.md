@@ -16,5 +16,4 @@ conda activate russian-river-seepage
 ### Data
 
 * **Raw data** → `data/raw/` (API pulls or local CSV/Excel)
-* **Interim** → `data/interim/` (merged/resampled tables)
 * **Processed** → `data/processed/` 
