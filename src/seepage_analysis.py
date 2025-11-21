@@ -27,7 +27,6 @@ hypso.columns = ["h_m", "vol_m3", "A_m2"]
 hypso["h_m"] = hypso["h_m"] + 2.73 * 0.3048
 
 
-
 def get_closures(patches ):
 
     closures = pd.DataFrame()
@@ -43,11 +42,10 @@ def get_closures(patches ):
         duration = len(patch)
         closures = pd.concat([closures,
                              pd.Series({'start' : start, 'end' : end, 'duration' : duration})
-                            ], axis = 1)
+                             ], axis = 1)
     closures = closures.T.reset_index()    
     
     return closures
-
 
 def add_vol(h_name, subset, name = "vol_m3"):
     """
@@ -57,7 +55,6 @@ def add_vol(h_name, subset, name = "vol_m3"):
         diff = (subset.loc[ind][h_name] - hypso.h_m).dropna().abs()
         subset.at[ind, name] = hypso.iloc[diff.idxmin()].vol_m3
     return subset
-
 
 
 def get_daily_subset(subset, include_USGS = 0, periods = 1):
@@ -748,7 +745,7 @@ def optimize_exponent(merged_case, ind):
     daily_subset = daily_subset[['seepage', 'delta_h', 'visitor_h', 'waveHs', 'Q']].dropna()
     daily_subset['date'] = daily_subset.index.date
 
-    lose = filter_overtop(subset, minval=0.0)
+    lose = filter_overtop(subset, minval = 0.0)
     pos_subset = daily_subset[~(daily_subset.date).isin(lose)]
     pos_subset = pos_subset.query("seepage < 6 and seepage > 0")
 
@@ -763,7 +760,7 @@ def optimize_exponent(merged_case, ind):
     ps = np.arange(0, 0.4, 0.5)
 
     for p in ps:
-        #X = (pos_subset['delta_h']**p * pos_subset['visitor_h']**0.).values.reshape(-1, 1)
+
         X = (pos_subset['delta_h'] * (pos_subset['delta_h'] + p) ).values.reshape(-1, 1)
         y = pos_subset['seepage'].values
         predictions, slope, intercept, r_squared, t_value, CI_low, CI_high, residuals = fit_Xy(X, y)
@@ -889,8 +886,6 @@ def optimize_exponent_double(merged_case, ind):
     AIC_best = calculate_AIC(n, best_residuals, k=2)
 
     # Now do linear model
-    # X_lin = pos_subset['delta_h'].values.reshape(-1, 1)
-    #X_lin = (pos_subset['delta_h'] **2 * pos_subset['visitor_h']**0. ).values.reshape(-1, 1)
     X_lin = (pos_subset['delta_h']  * pos_subset['delta_h'] ).values.reshape(-1, 1)
     y = pos_subset['seepage'].values
     predictions, slope, intercept, r_squared, t_value, CI_low, CI_high, residuals_lin = fit_Xy(X_lin, y)
@@ -932,71 +927,6 @@ def optimize_exponent_double(merged_case, ind):
     return best
 
 
-def optimize_exponent_prev(merged_case, ind):
-    """
-    we can delete this. 
-    """
-    subset =  get_subset(merged_case, ind, 0, 0)
-    daily_subset = get_daily_subset(subset, periods = 1)
-    date = daily_subset.index[0].date()
-    duration = len(daily_subset)
-
-    daily_subset['seepage'] =  daily_subset['seepage_visitor']
-    daily_subset['State_visit'] = daily_subset['State_visit'].apply(np.floor)
-
-    # Calculate Δh
-    daily_subset['delta_h'] = daily_subset.visitor_filled - daily_subset.v
-    daily_subset = daily_subset[['seepage', 'delta_h', 'visitor_h', 'waveHs']].dropna()
-    daily_subset['date'] = daily_subset.index.date
-
-    lose = filter_overtop(subset, minval=0.0)
-    pos_subset = daily_subset[~(daily_subset.date).isin(lose)]
-    pos_subset = pos_subset.query("seepage < 6 and seepage > 0")
-
-    N = len(pos_subset)
-
-    if len(pos_subset) >= 5:
-
-        X = (pos_subset['delta_h'] ).values.reshape(-1, 1)
-        y =  pos_subset['seepage']
-
-    else:
-        return
-
-    R2s = []
-    ps= np.arange(0, 3, 0.1)
-    slopes = []
-    for p in ps:
-        
-        X = (pos_subset['delta_h'] * pos_subset['visitor_h']**p).values.reshape(-1, 1)
-        y =  pos_subset['seepage']
-
-        predictions, slope, intercept, r_squared, t_value, CI_low, CI_high, residuals = fit_Xy(X, y)
-        R2s.append(r_squared)
-        slopes.append(slope)
-
-    ind = np.where(R2s == np.max(R2s))[0][0]
-    best_exponent = np.round(ps[ind], 2)
-    best_R2 = R2s[ind]
-    best_slope = slopes[ind]
-
-    X = (pos_subset['delta_h']).values.reshape(-1, 1)
-    y =  pos_subset['seepage']
-    predictions, slope, intercept, r_squared, t_value, CI_low, CI_high, residuals = fit_Xy(X, y)
-
-    best = pd.Series({'K_tilde_best' : best_slope.round(3), 
-                      'b_best' :  '{0:.2f}'.format(best_exponent),
-                      'K_tilde' : slope.round(3), 
-                      'CI_low' : CI_low, 'CI_high' : CI_high,
-                      'R2' : '{0:.2f}'.format(r_squared),
-                      'best_R2' : '{0:.2f}'.format(best_R2),                      
-                      'date' : date,
-                      'K_tilde_fmt' : '{0:.2f} [{1:.2f}-{2:.2f}]'.format(slope, CI_low, CI_high),
-                      'N' : len(pos_subset),
-                      'duration' : duration})
-    return best
-
-############################ Summarize the closures
 
 ###### Timeseries functions
 
@@ -1018,7 +948,6 @@ def sequence_lengths(data):
             lengths.extend([0] * len(group_list))
     return lengths
 
-# ###### ###### ###### ###### ###### ###### #####
 
 # Functions to compute the Short Time Fourier Transform (STFT)
 from scipy.signal import stft
@@ -1098,8 +1027,6 @@ def add_power_visitor(subset, period, data_freq='15T', label = 'visitor_24_hr' )
     
     # Apply STFT Short Time Fourier Transform (STFT)
     f, t, Zxx = stft(subset['visitor_filled'], fs=fs, nperseg=nperseg, noverlap=nperseg-1) 
-    # Apply STFT  Short Time Fourier Transform (STFT)
-    #f, t, Zxx = stft(subset['visitor_filled'],fs=1/(3600), nperseg=4*period, noverlap=4*period-1) 
 
     # Find the index corresponding to the period-hour frequency
     # f is an array of frequencies. 1/(period*3600) is the period-hour frequency in Hz
