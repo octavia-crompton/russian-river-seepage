@@ -59,7 +59,7 @@ def add_vol(h_name, subset, name = "vol_m3"):
 
 def get_daily_subset(subset, include_USGS = 0, periods = 1):
     """
-    compute daily data from merged daily data
+    Compute daily data from merged daily data
     """
     # groupby date and compute mean
     daily_subset = subset.groupby(subset.date).mean()
@@ -68,8 +68,16 @@ def get_daily_subset(subset, include_USGS = 0, periods = 1):
     # fill visitor gaps up to 1 day
     result = sequence_lengths(daily_subset.visitor_h.isna())
     daily_subset['visitor_gap'] = result
-    daily_subset['visitor_filled'] = daily_subset['visitor_h'].interpolate(
-        method='polynomial', order=1)
+
+
+    s = daily_subset["visitor_h"]
+
+    if s.notna().sum() >= 2:
+        daily_subset["visitor_filled"] = s.interpolate(method="polynomial", order = 1)
+    else:
+        # nothing to interpolate; just copy the original
+        daily_subset["visitor_filled"] = s
+
     daily_subset.loc[daily_subset.query('visitor_gap > 1').index,  'visitor_filled'] = np.nan
 
     daily_subset['dh/dt_visitor'] = daily_subset.visitor_filled.diff(periods = periods)/periods
@@ -85,7 +93,8 @@ def get_daily_subset(subset, include_USGS = 0, periods = 1):
         periods = periods)/3600/24/periods
 
     # seepage estimate (m3/day)
-    daily_subset['seepage_visitor'] = (daily_subset['Q'] - daily_subset['dvol/dt_visitor_filled']
+    daily_subset['seepage_visitor'] = (daily_subset['Q'] - daily_subset['dvol/dt_visitor_filled'] 
+                                        - daily_subset['rain_m3s']
                                       ).where(daily_subset['State_visit'] == 1)
 
     # predict volume in one day, using discharge
@@ -125,12 +134,13 @@ def get_daily_subset(subset, include_USGS = 0, periods = 1):
 
         # seepage estimate (m3/day)
         daily_subset['seepage_USGS'] = (daily_subset['Q'] - daily_subset['dvol/dt_USGS_filled']
-                                      ).where(daily_subset['State_visit'] == 1)
-
+                                        - daily_subset['rain_m3s']
+                                      ).where(daily_subset['State_USGS'] == 1)
 
         daily_subset['USGS-visitor'] = daily_subset['USGS_h'] - daily_subset['visitor_h']
 
-    daily_subset.index = daily_subset.index.tz_localize('UCT')
+    # daily_subset.index = daily_subset.index.tz_localize('UCT')
+    daily_subset.index = daily_subset.index.tz_localize(None)
 
     return daily_subset
 
@@ -162,49 +172,14 @@ def get_daily_subset_USGS(subset, periods = 1):
 
     # seepage estimate (m3/day)
     daily_subset['seepage_USGS'] = (daily_subset['Q'] - daily_subset['dvol/dt_USGS_filled']
-                                  ).where(daily_subset['State_visit'] == 1)
-
-
-    daily_subset['USGS-visitor'] = daily_subset['USGS_h'] - daily_subset['visitor_h']
-
-    daily_subset.index = daily_subset.index.tz_localize('UCT')
-
-    return daily_subset
-
-def get_daily_subset_USGS(subset, periods = 1):
-    """
-    compute daily data from merged daily data
-    """
-    # groupby date and compute mean
-    daily_subset = subset.groupby(subset.date).mean()
-    daily_subset.index = pd.to_datetime(daily_subset.index)
-
-    # fill USGS gaps up to 1 day
-    result = sequence_lengths(daily_subset.USGS_h.isna())
-    daily_subset['USGS_gap'] = result
-    daily_subset['USGS_filled'] = daily_subset['USGS_h'].interpolate(
-        method='polynomial', order=1)
-    daily_subset.loc[daily_subset.query('USGS_gap > 1').index,
-                     'USGS_filled'] = np.nan
-
-    daily_subset['dh/dt_USGS'] = daily_subset.USGS_filled.diff(periods = periods)/periods
-
-    daily_subset = add_vol("USGS_h", daily_subset, name = "vol_USGS")
-    daily_subset = add_vol("USGS_filled", daily_subset, name = "vol_USGS_filled")
-
-    daily_subset['dvol/dt_USGS'] = daily_subset.vol_USGS.diff(periods = periods)/3600/24/periods
-    daily_subset['dvol/dt_USGS_filled'] = daily_subset.vol_USGS_filled.diff(
-        periods = periods)/3600/24/periods
-
-    # seepage estimate (m3/day)
-    daily_subset['seepage_USGS'] = (daily_subset['Q'] - daily_subset['dvol/dt_USGS_filled']
-                                  ).where(daily_subset['State_visit'] == 1)
-
+                                    - daily_subset['rain_m3s']
+                                  ).where(daily_subset['State_USGS'] == 1)
 
     daily_subset['USGS-visitor'] = daily_subset['USGS_h'] - daily_subset['visitor_h']
 
-    daily_subset.index = daily_subset.index.tz_localize('UCT')
-
+    #daily_subset.index = daily_subset.index.tz_localize('UCT')
+    daily_subset.index = daily_subset.index.tz_localize(None)
+    
     return daily_subset
 
 
@@ -459,7 +434,6 @@ def get_ylim_visitor(hourly_subset):
 def plot_mass_bal_hourly(merged, ind, ax, padding = 10, logscale = 1, power = 1):
     """
     """
-
     subset =  get_subset(merged, ind, padding, padding)
     closure_subset =  get_subset(merged, ind, 0, 0)
     closure_subset = closure_subset
@@ -491,8 +465,8 @@ def plot_mass_bal_hourly(merged, ind, ax, padding = 10, logscale = 1, power = 1)
     pos_subset = hourly_subset[~(hourly_subset.index).isin(lose)].query("seepage_visitor < 8")
     pos_subset = pos_subset[['day', 'date', 'seepage_visitor']].dropna()
 
-    (pos_subset[['seepage_visitor']]).plot(xlabel='Time', ylabel='m3/s',
-                                    style = 'C2o', ax = ax, label = '$S = Q - dV/dt$')
+    pos_subset[['seepage_visitor']].rename({'seepage_visitor' : '$S = Q - dV/dt$'}, axis = 1).plot(
+        xlabel='Time', ylabel='m3/s', style = 'C2.', ax = ax)
 
     # plot regression
     X = pos_subset[['day']]
@@ -510,7 +484,7 @@ def plot_mass_bal_hourly(merged, ind, ax, padding = 10, logscale = 1, power = 1)
         ax.axvspan(start, end, color='C0', alpha=0.1)
 
     for start, end in get_shading_regions(subset['State_visit'], 0.2)[:1]:
-        ax.axvspan(start, end, color='C0', alpha=0.1, label = "Open")
+        ax.axvspan(start, end, color='C0', alpha=0.1, label = "Inlet open")
 
     ax.legend(title = '', loc='center left', bbox_to_anchor=(1, 0.5));
 
@@ -530,9 +504,7 @@ def plot_mass_bal_hourly(merged, ind, ax, padding = 10, logscale = 1, power = 1)
     return ax
 
 
-## Summary plots
-
-    
+## Summary plots    
 def plot_seepage_ratio(summary_subset, ax, label = None, alpha = 1):
 
     ax.errorbar(summary_subset.date, summary_subset['SQ'],  alpha = alpha, label = label,
@@ -757,11 +729,11 @@ def optimize_exponent(merged_case, ind):
     R2s = []
     slopes = []
     residuals_list = []
-    ps = np.arange(0, 0.4, 0.5)
+    ps = np.arange(0.5, 2, 0.1)
 
     for p in ps:
 
-        X = (pos_subset['delta_h'] * (pos_subset['delta_h'] + p) ).values.reshape(-1, 1)
+        X = (pos_subset['delta_h'] **p ).values.reshape(-1, 1)
         y = pos_subset['seepage'].values
         predictions, slope, intercept, r_squared, t_value, CI_low, CI_high, residuals = fit_Xy(X, y)
         R2s.append(r_squared)

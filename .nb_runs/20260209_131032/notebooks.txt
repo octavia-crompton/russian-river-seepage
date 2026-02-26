@@ -1,0 +1,21 @@
+/Users/octaviacrompton/Google_Drive_quatratavia/estuaries_jenner/russian-river-seepage/data/boon-webcam/API download.ipynb
+/Users/octaviacrompton/Google_Drive_quatratavia/estuaries_jenner/russian-river-seepage/data/boon-webcam/AP questionable days.ipynb
+/Users/octaviacrompton/Google_Drive_quatratavia/estuaries_jenner/russian-river-seepage/notebooks/model description - three models.ipynb
+/Users/octaviacrompton/Google_Drive_quatratavia/estuaries_jenner/russian-river-seepage/notebooks/archive/model_fit_linear_offset_scaled.ipynb
+/Users/octaviacrompton/Google_Drive_quatratavia/estuaries_jenner/russian-river-seepage/notebooks/archive/Seepage_vs_DeltaH_model_fits-regularize.ipynb
+/Users/octaviacrompton/Google_Drive_quatratavia/estuaries_jenner/russian-river-seepage/notebooks/archive/updates_global_bounds_weighted_medians.ipynb
+/Users/octaviacrompton/Google_Drive_quatratavia/estuaries_jenner/russian-river-seepage/notebooks/archive/Seepage_DeltaH_centeredR2_optimization_summary.ipynb
+/Users/octaviacrompton/Google_Drive_quatratavia/estuaries_jenner/russian-river-seepage/notebooks/archive/Russian River – 15 min – delta h - submitted.ipynb
+/Users/octaviacrompton/Google_Drive_quatratavia/estuaries_jenner/russian-river-seepage/notebooks/archive/model_fit_per_event_offset.ipynb
+/Users/octaviacrompton/Google_Drive_quatratavia/estuaries_jenner/russian-river-seepage/notebooks/Grouped_vs_Pooled_Robust_only.ipynb
+/Users/octaviacrompton/Google_Drive_quatratavia/estuaries_jenner/russian-river-seepage/notebooks/Russian River  – merge data.ipynb
+/Users/octaviacrompton/Google_Drive_quatratavia/estuaries_jenner/russian-river-seepage/notebooks/Seepage_vs_DeltaH_model_comparison.ipynb
+/Users/octaviacrompton/Google_Drive_quatratavia/estuaries_jenner/russian-river-seepage/notebooks/Grouped_vs_Pooled_Param_Consistency.ipynb
+/Users/octaviacrompton/Google_Drive_quatratavia/estuaries_jenner/russian-river-seepage/notebooks/Russian River  – analysis.ipynb
+/Users/octaviacrompton/Google_Drive_quatratavia/estuaries_jenner/russian-river-seepage/notebooks/Grouped_vs_Pooled_visitor_center_only.ipynb
+/Users/octaviacrompton/Google_Drive_quatratavia/estuaries_jenner/russian-river-seepage/notebooks/Russian River – 15 min – delta h - submitted.ipynb
+/Users/octaviacrompton/Google_Drive_quatratavia/estuaries_jenner/russian-river-seepage/notebooks/Seepage_vs_DeltaH_model_fits_updates.ipynb
+/Users/octaviacrompton/Google_Drive_quatratavia/estuaries_jenner/russian-river-seepage/notebooks/Russian River - visitor center - USGS.ipynb
+/Users/octaviacrompton/Google_Drive_quatratavia/estuaries_jenner/russian-river-seepage/notebooks/Seepage_vs_DeltaH_model_fits.ipynb
+/Users/octaviacrompton/Google_Drive_quatratavia/estuaries_jenner/russian-river-seepage/notebooks/Grouped_vs_Pooled_3models.ipynb
+/Users/octaviacrompton/Google_Drive_quatratavia/estuaries_jenner/russian-river-seepage/notebooks/Crest.ipynb
