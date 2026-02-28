@@ -609,7 +609,7 @@ def plot_Ks(summary_subset, ax, label = None, alpha = 1):
         ax.axvline(pd.to_datetime(f'{year}-01-01'), color='grey', linestyle='--', linewidth=0.8)
 
     # ax.set_xlabel("date")
-    ax.set_ylabel(r"$\tilde K$ (m$^2$/s)")
+    ax.set_ylabel(r"$C_L$ (m$^2$/s)")
     start = pd.to_datetime('2012-01-01').tz_localize("UCT")
     end = pd.to_datetime('2023-01-30').tz_localize("UCT")
     ax.set_xlim(start, end)
