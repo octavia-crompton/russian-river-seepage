@@ -1,0 +1,49 @@
+This is BibTeX, Version 0.99d (TeX Live 2025)
+Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
+The top-level auxiliary file: diff.aux
+The style file: elsarticle-harv.bst
+Database file #1: local.bib
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Warning--missing institution in USGS_WDR_Documentation_Explanation
+You've used 28 entries,
+            2990 wiz_defined-function locations,
+            808 strings with 10893 characters,
+and the built_in function-call counts, 18034 in all, are:
+= -- 1308
+> -- 744
+< -- 16
++ -- 290
+- -- 258
+* -- 1964
+:= -- 2652
+add.period$ -- 89
+call.type$ -- 28
+change.case$ -- 226
+chr.to.int$ -- 28
+cite$ -- 29
+duplicate$ -- 1372
+empty$ -- 1321
+format.name$ -- 330
+if$ -- 3294
+int.to.chr$ -- 1
+int.to.str$ -- 1
+missing$ -- 271
+newline$ -- 160
+num.names$ -- 112
+pop$ -- 515
+preamble$ -- 1
+purify$ -- 197
+quote$ -- 0
+skip$ -- 381
+stack$ -- 0
+substring$ -- 700
+swap$ -- 980
+text.length$ -- 2
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 243
+warning$ -- 1
+while$ -- 114
+width$ -- 0
+write$ -- 406
+(There was 1 warning)

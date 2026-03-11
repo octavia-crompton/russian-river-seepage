@@ -1,0 +1,256 @@
+\begin{thebibliography}{28}
+\expandafter\ifx\csname natexlab\endcsname\relax\def\natexlab#1{#1}\fi
+\providecommand{\url}[1]{\texttt{#1}}
+\providecommand{\href}[2]{#2}
+\providecommand{\path}[1]{#1}
+\providecommand{\DOIprefix}{doi:}
+\providecommand{\ArXivprefix}{arXiv:}
+\providecommand{\URLprefix}{URL: }
+\providecommand{\Pubmedprefix}{pmid:}
+\providecommand{\doi}[1]{\href{http://dx.doi.org/#1}{\path{#1}}}
+\providecommand{\Pubmed}[1]{\href{pmid:#1}{\path{#1}}}
+\providecommand{\bibinfo}[2]{#2}
+\ifx\xfnm\relax \def\xfnm[#1]{\unskip,\space#1}\fi
+%Type = Book
+\bibitem[{Anders et~al.(2011)Anders, Davidek and Stoeckel}]{anders2011water}
+\bibinfo{author}{Anders, R.}, \bibinfo{author}{Davidek, K.},
+  \bibinfo{author}{Stoeckel, D.M.}, \bibinfo{year}{2011}.
+\newblock \bibinfo{title}{Water-quality data for the Russian River Basin,
+  Mendocino and Sonoma Counties, California, 2005-2010}.
+\newblock \bibinfo{publisher}{US Geological Survey}.
+%Type = Article
+\bibitem[{Behrens et~al.(2015)Behrens, Brennan and
+  Battalio}]{behrens2015quantified}
+\bibinfo{author}{Behrens, D.}, \bibinfo{author}{Brennan, M.},
+  \bibinfo{author}{Battalio, B.}, \bibinfo{year}{2015}.
+\newblock \bibinfo{title}{A quantified conceptual model of inlet morphology and
+  associated lagoon hydrology}.
+\newblock \bibinfo{journal}{Shore \& Beach} \bibinfo{volume}{83},
+  \bibinfo{pages}{33--42}.
+%Type = Article
+\bibitem[{Behrens et~al.(2009)Behrens, Bombardelli, Largier and
+  Twohy}]{behrens2009characterization}
+\bibinfo{author}{Behrens, D.K.}, \bibinfo{author}{Bombardelli, F.A.},
+  \bibinfo{author}{Largier, J.L.}, \bibinfo{author}{Twohy, E.},
+  \bibinfo{year}{2009}.
+\newblock \bibinfo{title}{Characterization of time and spatial scales of a
+  migrating rivermouth}.
+\newblock \bibinfo{journal}{Geophysical Research Letters} \bibinfo{volume}{36}.
+%Type = Article
+\bibitem[{Behrens et~al.(2013)Behrens, Bombardelli, Largier and
+  Twohy}]{behrens2013episodic}
+\bibinfo{author}{Behrens, D.K.}, \bibinfo{author}{Bombardelli, F.A.},
+  \bibinfo{author}{Largier, J.L.}, \bibinfo{author}{Twohy, E.},
+  \bibinfo{year}{2013}.
+\newblock \bibinfo{title}{Episodic closure of the tidal inlet at the mouth of
+  the russian river—a small bar-built estuary in california}.
+\newblock \bibinfo{journal}{Geomorphology} \bibinfo{volume}{189},
+  \bibinfo{pages}{66--80}.
+%Type = Article
+\bibitem[{Bond et~al.(2008)Bond, Hayes, Hanson and MacFarlane}]{bond2008marine}
+\bibinfo{author}{Bond, M.H.}, \bibinfo{author}{Hayes, S.A.},
+  \bibinfo{author}{Hanson, C.V.}, \bibinfo{author}{MacFarlane, R.B.},
+  \bibinfo{year}{2008}.
+\newblock \bibinfo{title}{Marine survival of steelhead (oncorhynchus mykiss)
+  enhanced by a seasonally closed estuary}.
+\newblock \bibinfo{journal}{Canadian Journal of Fisheries and Aquatic Sciences}
+  \bibinfo{volume}{65}, \bibinfo{pages}{2242--2252}.
+%Type = Article
+\bibitem[{Booysen and Theron(2020)}]{booysen2020methods}
+\bibinfo{author}{Booysen, Z.}, \bibinfo{author}{Theron, A.K.},
+  \bibinfo{year}{2020}.
+\newblock \bibinfo{title}{Methods for predicting berm height at temporarily
+  open/closed estuaries}.
+\newblock \bibinfo{journal}{Estuarine, Coastal and Shelf Science}
+  \bibinfo{volume}{245}, \bibinfo{pages}{106906}.
+%Type = Article
+\bibitem[{Clark and O'Connor(2019)}]{clark2019systematic}
+\bibinfo{author}{Clark, R.}, \bibinfo{author}{O'Connor, K.},
+  \bibinfo{year}{2019}.
+\newblock \bibinfo{title}{A systematic survey of bar-built estuaries along the
+  california coast}.
+\newblock \bibinfo{journal}{Estuarine, Coastal and Shelf Science}
+  \bibinfo{volume}{226}, \bibinfo{pages}{106285}.
+%Type = Article
+\bibitem[{Cooper(2001)}]{cooper2001geomorphological}
+\bibinfo{author}{Cooper, J.}, \bibinfo{year}{2001}.
+\newblock \bibinfo{title}{Geomorphological variability among microtidal
+  estuaries from the wave-dominated south african coast}.
+\newblock \bibinfo{journal}{Geomorphology} \bibinfo{volume}{40},
+  \bibinfo{pages}{99--122}.
+%Type = Techreport
+\bibitem[{{Environmental Data
+  Solutions}(2011)}]{EDS_2011_LowerRussianRiver_Bathy}
+\bibinfo{author}{{Environmental Data Solutions}}, \bibinfo{year}{2011}.
+\newblock \bibinfo{title}{Lower Russian River Bathymetric Analysis: Methods,
+  Equipment and Results}.
+\newblock \bibinfo{type}{Technical Report} \bibinfo{number}{EDS Project No.\
+  1742}. Environmental Data Solutions. \bibinfo{address}{San Rafael, CA}.
+\newblock \bibinfo{note}{Revision 2}.
+%Type = Article
+\bibitem[{Goodwin(1996)}]{goodwin1996predicting}
+\bibinfo{author}{Goodwin, P.}, \bibinfo{year}{1996}.
+\newblock \bibinfo{title}{Predicting the stability of tidal inlets for wetland
+  and estuary management}.
+\newblock \bibinfo{journal}{Journal of Coastal Research} ,
+  \bibinfo{pages}{83--101}.
+%Type = Article
+\bibitem[{Heady et~al.(2015)Heady, Clark, O’Connor, Clark, Endris, Ryan and
+  Stoner-Duncan}]{heady2015assessing}
+\bibinfo{author}{Heady, W.N.}, \bibinfo{author}{Clark, R.P.},
+  \bibinfo{author}{O’Connor, K.}, \bibinfo{author}{Clark, C.},
+  \bibinfo{author}{Endris, C.}, \bibinfo{author}{Ryan, S.},
+  \bibinfo{author}{Stoner-Duncan, S.}, \bibinfo{year}{2015}.
+\newblock \bibinfo{title}{Assessing {C}alifornia's bar-built estuaries using
+  the {C}alifornia rapid assessment method}.
+\newblock \bibinfo{journal}{Ecological Indicators} \bibinfo{volume}{58},
+  \bibinfo{pages}{300--310}.
+%Type = Article
+\bibitem[{Huber and Carlson(2020)}]{huber2020environmental}
+\bibinfo{author}{Huber, E.R.}, \bibinfo{author}{Carlson, S.M.},
+  \bibinfo{year}{2020}.
+\newblock \bibinfo{title}{Environmental correlates of fine-scale juvenile
+  steelhead trout (oncorhynchus mykiss) habitat use and movement patterns in an
+  intermittent estuary during drought}.
+\newblock \bibinfo{journal}{Environmental Biology of Fishes}
+  \bibinfo{volume}{103}, \bibinfo{pages}{509--529}.
+%Type = Article
+\bibitem[{Johnson(1973)}]{johnson1973characteristics}
+\bibinfo{author}{Johnson, J.W.}, \bibinfo{year}{1973}.
+\newblock \bibinfo{title}{Characteristics and behavior of {P}acific {C}ost
+  tidal inlets}.
+\newblock \bibinfo{journal}{Journal of the Waterways, Harbors and Coastal
+  Engineering Division} \bibinfo{volume}{99}, \bibinfo{pages}{325--339}.
+%Type = Article
+\bibitem[{Largier et~al.(2020)Largier, Behrens, Hewett, Koohafkan, Robart, Dann
+  and Roettger}]{largier20205}
+\bibinfo{author}{Largier, J.}, \bibinfo{author}{Behrens, D.},
+  \bibinfo{author}{Hewett, K.}, \bibinfo{author}{Koohafkan, M.},
+  \bibinfo{author}{Robart, M.}, \bibinfo{author}{Dann, D.},
+  \bibinfo{author}{Roettger, R.}, \bibinfo{year}{2020}.
+\newblock \bibinfo{title}{Managing the mouth of russian river estuary,
+  california}.
+\newblock \bibinfo{journal}{Complex coastal systems} , \bibinfo{pages}{73}.
+%Type = Article
+\bibitem[{Largier et~al.(2019)Largier, O’Connor and
+  Clark}]{largier2019considerations}
+\bibinfo{author}{Largier, J.}, \bibinfo{author}{O’Connor, K.},
+  \bibinfo{author}{Clark, R.}, \bibinfo{year}{2019}.
+\newblock \bibinfo{title}{Considerations for management of the mouth state of
+  california’s bar-built estuaries}.
+\newblock \bibinfo{journal}{Report to the Pacific States Marine Fisheries
+  Commission and NOAA (NA14NMF437012)} .
+%Type = Article
+\bibitem[{Largier(2023)}]{largier2023recognizing}
+\bibinfo{author}{Largier, J.L.}, \bibinfo{year}{2023}.
+\newblock \bibinfo{title}{Recognizing low-inflow estuaries as a common estuary
+  paradigm}.
+\newblock \bibinfo{journal}{Estuaries and Coasts} , \bibinfo{pages}{1--22}.
+%Type = Book
+\bibitem[{Masters and Jacob(1991)}]{masters1991introduction}
+\bibinfo{author}{Masters, G.M.}, \bibinfo{author}{Jacob, D.},
+  \bibinfo{year}{1991}.
+\newblock \bibinfo{title}{Introduction to environmental science and
+  engineering}.
+\newblock \bibinfo{publisher}{Prentice Hall}.
+%Type = Article
+\bibitem[{McSweeney et~al.(2017)McSweeney, Kennedy, Rutherfurd and
+  Stout}]{mcsweeney2017intermittently}
+\bibinfo{author}{McSweeney, S.}, \bibinfo{author}{Kennedy, D.},
+  \bibinfo{author}{Rutherfurd, I.}, \bibinfo{author}{Stout, J.},
+  \bibinfo{year}{2017}.
+\newblock \bibinfo{title}{Intermittently closed/open lakes and lagoons: Their
+  global distribution and boundary conditions}.
+\newblock \bibinfo{journal}{Geomorphology} \bibinfo{volume}{292},
+  \bibinfo{pages}{142--152}.
+%Type = Article
+\bibitem[{Newcomer et~al.(2023)Newcomer, Underwood, Murphy, Ulrich, Schram,
+  Maples, Pe{\~n}a, Siirila-Woodburn, Trotta, Jasperse
+  et~al.}]{newcomer2023prolonged}
+\bibinfo{author}{Newcomer, M.E.}, \bibinfo{author}{Underwood, J.},
+  \bibinfo{author}{Murphy, S.F.}, \bibinfo{author}{Ulrich, C.},
+  \bibinfo{author}{Schram, T.}, \bibinfo{author}{Maples, S.R.},
+  \bibinfo{author}{Pe{\~n}a, J.}, \bibinfo{author}{Siirila-Woodburn, E.R.},
+  \bibinfo{author}{Trotta, M.}, \bibinfo{author}{Jasperse, J.}, et~al.,
+  \bibinfo{year}{2023}.
+\newblock \bibinfo{title}{Prolonged drought in a northern california coastal
+  region suppresses wildfire impacts on hydrology}.
+\newblock \bibinfo{journal}{Water Resources Research} \bibinfo{volume}{59},
+  \bibinfo{pages}{e2022WR034206}.
+%Type = Article
+\bibitem[{Perissinotto et~al.(2010)Perissinotto, Stretch, Whitfield, Adams,
+  Forbes and Demetriades}]{perissinotto2010ecosystem}
+\bibinfo{author}{Perissinotto, R.}, \bibinfo{author}{Stretch, D.},
+  \bibinfo{author}{Whitfield, A.}, \bibinfo{author}{Adams, J.},
+  \bibinfo{author}{Forbes, A.}, \bibinfo{author}{Demetriades, N.},
+  \bibinfo{year}{2010}.
+\newblock \bibinfo{title}{Ecosystem functioning of temporarily open/closed
+  estuaries in south africa}.
+\newblock \bibinfo{journal}{Estuaries: types, movement patterns} ,
+  \bibinfo{pages}{1--69}.
+%Type = Book
+\bibitem[{Rantz(1982)}]{Rantz1982_streamflow}
+\bibinfo{author}{Rantz, S.E.}, \bibinfo{year}{1982}.
+\newblock \bibinfo{title}{Measurement and Computation of Streamflow: Volumes 1
+  and 2}. volume \bibinfo{volume}{2175} of
+  \textit{\bibinfo{series}{Water-Supply Paper}}.
+\newblock \bibinfo{publisher}{U.S. Geological Survey},
+  \bibinfo{address}{Reston, VA}.
+%Type = Article
+\bibitem[{Slinger et~al.(2017)Slinger, Taljaard and Largier}]{slinger2017modes}
+\bibinfo{author}{Slinger, J.H.}, \bibinfo{author}{Taljaard, S.},
+  \bibinfo{author}{Largier, J.L.}, \bibinfo{year}{2017}.
+\newblock \bibinfo{title}{Modes of water renewal and flushing in a small
+  intermittently closed estuary}.
+\newblock \bibinfo{journal}{Estuarine, Coastal and Shelf Science}
+  \bibinfo{volume}{196}, \bibinfo{pages}{346--359}.
+%Type = Misc
+\bibitem[{{Sonoma County Water Agency}(2016)}]{SonomaWater_FishFlowDEIR_2016}
+\bibinfo{author}{{Sonoma County Water Agency}}, \bibinfo{year}{2016}.
+\newblock \bibinfo{title}{Fish habitat flows and water rights project}.
+\newblock \bibinfo{howpublished}{\url{https://www.sonomawater.org/fish-flow}}.
+\newblock \bibinfo{note}{Accessed 22 November 2025}.
+%Type = Misc
+\bibitem[{{Sonoma County Water Agency}(2025)}]{sonomawater_watersupply}
+\bibinfo{author}{{Sonoma County Water Agency}}, \bibinfo{year}{2025}.
+\newblock \bibinfo{title}{Water {S}upply: {R}iver {M}anagement {S}ystem}.
+\newblock
+  \bibinfo{howpublished}{\url{https://www.sonomawater.org/water-supply}}.
+\newblock \bibinfo{note}{Accessed 22 November 2025}.
+%Type = Article
+\bibitem[{Stein et~al.(2021)Stein, Gee, Adams, Irving and
+  Van~Niekerk}]{stein2021advancing}
+\bibinfo{author}{Stein, E.D.}, \bibinfo{author}{Gee, E.M.},
+  \bibinfo{author}{Adams, J.B.}, \bibinfo{author}{Irving, K.},
+  \bibinfo{author}{Van~Niekerk, L.}, \bibinfo{year}{2021}.
+\newblock \bibinfo{title}{Advancing the science of environmental flow
+  management for protection of temporarily closed estuaries and coastal
+  lagoons}.
+\newblock \bibinfo{journal}{Water} \bibinfo{volume}{13}, \bibinfo{pages}{595}.
+%Type = Article
+\bibitem[{Thorne et~al.(2021)Thorne, Buffington, Jones and
+  Largier}]{thorne2021wetlands}
+\bibinfo{author}{Thorne, K.M.}, \bibinfo{author}{Buffington, K.J.},
+  \bibinfo{author}{Jones, S.F.}, \bibinfo{author}{Largier, J.L.},
+  \bibinfo{year}{2021}.
+\newblock \bibinfo{title}{Wetlands in intermittently closed estuaries can build
+  elevations to keep pace with sea-level rise}.
+\newblock \bibinfo{journal}{Estuarine, Coastal and Shelf Science}
+  \bibinfo{volume}{257}, \bibinfo{pages}{107386}.
+%Type = Misc
+\bibitem[{{U.S. Geological Survey}(2023)}]{usgs_nwis_sw}
+\bibinfo{author}{{U.S. Geological Survey}}, \bibinfo{year}{2023}.
+\newblock \bibinfo{title}{Usgs surface-water data for the nation}.
+\newblock \bibinfo{howpublished}{\url{https://waterdata.usgs.gov/nwis/sw}}.
+\newblock \bibinfo{note}{National Water Information System (NWIS). Accessed 22
+  November 2025}.
+%Type = Techreport
+\bibitem[{{U.S. Geological Survey}(2024)}]{USGS_WDR_Documentation_Explanation}
+\bibinfo{author}{{U.S. Geological Survey}}, \bibinfo{year}{2024}.
+\newblock \bibinfo{title}{Explanation of Stage- and Water-Discharge Records}.
+\newblock \bibinfo{type}{Technical Report}.
+\newblock \bibinfo{note}{Defines qualitative accuracy ratings (excellent, good,
+  fair, poor) and associated daily discharge uncertainty ranges. Accessed
+  2025-11-28}.
+
+\end{thebibliography}

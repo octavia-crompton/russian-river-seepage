@@ -1,0 +1,9 @@
+{
+  "extraPaths": ["src"],
+  "typeCheckingMode": "off",
+  "reportUnusedVariable": false,
+  "reportUnusedImport": false,
+  "reportUnusedExpression": false,
+  "reportMissingImports": false,
+  "reportUndefinedVariable": false
+}
