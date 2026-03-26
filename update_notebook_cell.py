@@ -4,7 +4,7 @@ Script to update cell #VSC-3e5fb8a9 in the notebook with new code
 """
 import json
 
-notebook_path = "/Users/octaviacrompton/Google_Drive_quatratavia/estuaries_jenner/russian-river-seepage/notebooks/2 Russian River  – analysis.ipynb"
+notebook_path = "/Users/octaviacrompton/Projects/russian-river-seepage/notebooks/2 Russian River  – analysis.ipynb"
 
 # Read the notebook
 with open(notebook_path, 'r') as f:

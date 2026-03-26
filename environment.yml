@@ -10,4 +10,4 @@ dependencies:
   - seaborn
   - scikit-learn
   - jinja2
-prefix: /Users/octaviacrompton/anaconda3/envs/hydro
+prefix: /Users/octaviacrompton/Projects/russian-river-seepage/.venv
