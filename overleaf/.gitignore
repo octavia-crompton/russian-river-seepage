@@ -1,0 +1,20 @@
+# Local-only files (never pushed to Overleaf)
+.DS_Store
+README.md
+snapshot_*/
+
+# LaTeX build artifacts
+*.aux
+*.bbl
+*.blg
+*.fdb_latexmk
+*.fls
+*.log
+*.out
+*.spl
+*.synctex.gz
+*.toc
+*.lof
+*.lot
+*.fff
+*.ttt

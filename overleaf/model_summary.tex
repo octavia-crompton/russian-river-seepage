@@ -1,0 +1,146 @@
+\documentclass[preprint,12pt,authoryear]{elsarticle}
+
+%% Use the option review to obtain double line spacing
+%% \documentclass[authoryear,preprint,review,12pt]{elsarticle}
+
+\usepackage{amssymb}
+\linespread{1.2}
+\usepackage{amsmath}
+\usepackage{lineno}
+\usepackage{graphicx}
+\usepackage[colorlinks=true, allcolors=blue]{hyperref}
+\usepackage[a4paper, total={6in, 9in}]{geometry}
+% \linenumbers
+\journal{Estuaries and Coasts}
+
+\begin{document}
+
+\section*{Seepage models}
+
+\subsection*{Background}
+
+
+
+ Seepage is calculated each day from a control-volume balance over the basin:
+\[
+S \approx Q_r - \frac{dV}{dt},
+\]
+after filtering overwash days and treating evaporation as small relative to $Q_r$ during the analyzed closures. Preliminary analysis indicates seepage is substantial, accounting for roughly 20--60\% of total discharge.
+
+We assume Darcy's law to model flow through the berm, considering the berm as a porous body with cross-sectional flow area $A_b$ and flow length $L_b$ from estuary to ocean. The seepage rate $S$ $[L^3T^{-1}]$ scales with the head difference between estuary and ocean,  $\Delta h = h - h_{\rm ocn}$:
+\[
+S = K\,A_b\,\frac{\Delta h}{L_b},
+\]
+where $K$ $[LT^{-1}]$ is hydraulic conductivity. Considering that $A_b$ and $L_b$ may vary depending on estuary water level, we define an {integrated berm conductance} $\mathcal{C}$:
+\[
+\mathcal{C}(\cdot) \;\equiv\; K\,\frac{A_b}{L_b}\qquad [L^2T^{-1}],
+\qquad
+S \;=\; \mathcal{C}(\cdot)\,\Delta h,
+\]
+where the conductance  $\mathcal{C}(\cdot)$ may vary with estuary level $h$ or with $\Delta h$.
+
+\subsection*{Transmissivity connection}
+
+The conductance $\mathcal{C}(\cdot)$ is closely related/analogous to aquifer transmissivity, which is a measure of an aquifer's ability to transmit groundwater. Transmissivity is  defined as the product of the aquifer's hydraulic conductivity $K$ and its saturated thickness $h_b$, that is, 
+ \(T=K h_b \). 
+
+ If $h_b$ is the vertical dimension of the seepage area and the alongshore width of the active flow section is $W_b$, then $A_b \approx h_b\,W_b$ and
+\[
+\mathcal{C}(\cdot) \;=\; K\,\frac{A_b}{L_b}
+   \;=\; (K\,h_b)\,\frac{W_b}{L_b}
+   \;=\; T\, \cdot \frac{W_b}{L_b} ,
+\]
+where $T=K\,b$ $[L^2T^{-1}]$ is the transmissivity, and if $W_b/L_b$ is nearly constant, $\mathcal{C} \propto T$. 
+
+We parameterize
+\[
+\mathcal{C}(\cdot) \;=\; C_{\rm ref}\, f(\cdot),
+\]
+where $C_{\rm ref}$ $[L^2T^{-1}]$ is a baseline (reference) conductance and the dimensionless factor $f(\cdot)$ [-] parameterizes how the seepage geometry ($A_b/L_b$) varies depending on estuary water level or $\Delta h$.
+
+
+\subsection*{Three candidate models}
+
+In the first, linear model, $f = 1$.
+The shifted-power models, we consider that  cross secrtional seepage area  $A_b$ and path length $L_b$ may vary depending on water level. 
+
+\paragraph{(1) Constant conductance (linear).}
+\[
+f(\cdot)=1
+\quad\Rightarrow\quad
+S \;=\; C_L\,\Delta h,
+\]
+with $C_L$ $[L^2T^{-1}]$ constant.
+
+\noindent\textit{Advantage:} Simple, convenient for operations. \\
+\textit{Assumption:} The effective seepage cross-sectional area /path is approximately constant over the analyzed range of $\Delta h$.
+
+\paragraph{(2) Visitor-level response (shifted--power on $h$)}
+
+\[
+\mathcal{C}(\cdot)= C_h\,f_h(h),
+\qquad
+f_h(h) \;=\; z_{h}^{\,b_{h}},
+\]
+\[
+z_{h}\;=\;\frac{h_{V}+\theta_{h}}{\,m_{h}\,},\qquad
+m_{h}\;=\;\operatorname{median}(h_{V})+\theta_{h},
+\]
+\[
+\Rightarrow\qquad
+S \;=\; C_h\,\Delta h\, z_{h}^{\,b_{h}}.
+\]
+Here $C_h$ $[L^2T^{-1}]$ is a reference conductance, 
+$\theta_h$ is an offset (threshold) chosen so $h+\theta_h>0$; $b_h\ge 0$ governs the sensitivity to $h$.
+
+The offset $\theta_h$ represents a minimum water level for flow (that is, a minimum estuary water level below which $A_b$ goes to zero, i.e, when $h + {\theta_h} = 0$ ).  
+The $A_b$ is anticipated to increase with rising water level, and the $L_b$ is anticipated to decrease, so $b_h> 0 $ is expected.
+
+Note that, averaged over time, $h- \Delta h \approx 1$  m, because mean sea level is 1 m NAVD at this location.   
+
+
+
+\paragraph{(3) Head-difference response (shifted--power on $\Delta h$).}
+\[
+\mathcal{C}(\cdot)= C_\Delta\,f_\Delta(\Delta h),
+\qquad
+f_\Delta(\Delta h) \;=\; z_{\Delta}^{\,b_{\Delta}},
+\]
+\[
+z_{\Delta}\;=\;\frac{\Delta h+\theta_{\Delta}}{\,m_{\Delta}\,},\qquad 
+m_{\Delta}\;=\;\operatorname{median}(\Delta h)+\theta_{\Delta},
+\]
+\[
+\Rightarrow\qquad
+S \;=\; C_\Delta\,\Delta h\, z_{\Delta}^{\,b_{\Delta}}.
+\]
+Here $C_\Delta$ $[L^2T^{-1}]$ is the reference conductance; $\theta_\Delta$ ensures $\Delta h+\theta_\Delta>0$; $b_\Delta\ge 0$ is estimated separately from $b_h$.
+
+\subsection*{Bounds in estimating model parameters}
+
+We do \emph{not} force $A_b=0$ at $h=0$ (the visitor gauge datum is NAVD88, not estuary depth; $h=0$ $\approx$ mean low tide can still have nonzero wetted thickness). Practically, we bound offsets globally so the powered bases remain positive and physically reasonable (e.g., $\theta \ge -\min(h)$).
+
+\subsection*{Notes}
+
+\begin{itemize}
+\item Use $L_b$ consistently for flow length.
+\item Use $\mathcal{C}(\cdot)$ for the conductance \emph{function} and $C_{\square}\in\{C_L,C_h,C_\Delta\}$ for the dimensionful reference conductances $[L^2T^{-1}]$.
+\item $z$ factors are dimensionless (median $+$ offset), so $C_{\square}$ retains physical units.
+\end{itemize}
+
+
+\end{document}
+
+
+Since river discharge, estuary height and hypsometry (stage-volume relationship)
+data are available, seepage can be estimated by mass balance.
+ICEs function as tidal systems when there is an ocean connection, and as salt-stratified
+lakes during closures, which prevents vertical mixing and can lead to hypoxia.
+An integrated hydraulic conductance can be obtained by regression of seepage on
+the head difference between estuary and ocean.
+Bar-built estuaries with relatively small (cross sectional areab100 m2) and shallow
+tidal inlets are wide- spread in Mediterranean climates and along wave-exposed coasts.
+
+Small, sandy coastal lagoons are common along the U.S. Pacific Coast, provide
+valuable habitat for salmonids, and are being squeezed by ongoing sea level rise and
+coastal development.

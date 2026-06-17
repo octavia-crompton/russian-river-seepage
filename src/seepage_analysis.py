@@ -94,7 +94,7 @@ def get_daily_subset(subset, include_USGS = 0, periods = 1):
 
     # seepage estimate (m3/day)
     daily_subset['seepage_visitor'] = (daily_subset['Q'] - daily_subset['dvol/dt_visitor_filled'] 
-                                        - daily_subset['rain_m3s']
+                                        + daily_subset['rain_m3s']
                                       ).where(daily_subset['State_visit'] == 1)
 
     # predict volume in one day, using discharge
@@ -134,7 +134,7 @@ def get_daily_subset(subset, include_USGS = 0, periods = 1):
 
         # seepage estimate (m3/day)
         daily_subset['seepage_USGS'] = (daily_subset['Q'] - daily_subset['dvol/dt_USGS_filled']
-                                        - daily_subset['rain_m3s']
+                                        + daily_subset['rain_m3s']
                                       ).where(daily_subset['State_USGS'] == 1)
 
         daily_subset['USGS-visitor'] = daily_subset['USGS_h'] - daily_subset['visitor_h']
@@ -172,7 +172,7 @@ def get_daily_subset_USGS(subset, periods = 1):
 
     # seepage estimate (m3/day)
     daily_subset['seepage_USGS'] = (daily_subset['Q'] - daily_subset['dvol/dt_USGS_filled']
-                                    - daily_subset['rain_m3s']
+                                    + daily_subset['rain_m3s']
                                   ).where(daily_subset['State_USGS'] == 1)
 
     daily_subset['USGS-visitor'] = daily_subset['USGS_h'] - daily_subset['visitor_h']
@@ -456,17 +456,17 @@ def plot_mass_bal_hourly(merged, ind, ax, padding = 10, logscale = 1, power = 1)
     hourly_subset[['Q']].plot(secondary_y=False, xlabel='Time', style='C0.--',
                         legend=True, ax = ax, label = '$Q$')
 
-    (hourly_subset['dvol/dt_visitor_filled']).plot(xlabel='Time', ylabel='m3/s',
+    (hourly_subset['dvol/dt_visitor_filled']).plot(xlabel='Time', ylabel=r'Water-budget terms (m$^3$ s$^{-1}$)',
                             style = 'C1.--', ax = ax, label = '$dV/dt$')
 
-    (hourly_subset['seepage_visitor']).plot(xlabel='Time', ylabel='m3/s',
+    (hourly_subset['seepage_visitor']).plot(xlabel='Time', ylabel=r'Water-budget terms (m$^3$ s$^{-1}$)',
                                     style = 'C2:', ax = ax, label = '')
 
     pos_subset = hourly_subset[~(hourly_subset.index).isin(lose)].query("seepage_visitor < 8")
     pos_subset = pos_subset[['day', 'date', 'seepage_visitor']].dropna()
 
     pos_subset[['seepage_visitor']].rename({'seepage_visitor' : '$S = Q - dV/dt$'}, axis = 1).plot(
-        xlabel='Time', ylabel='m3/s', style = 'C2.', ax = ax)
+        xlabel='Time', ylabel=r'Water-budget terms (m$^3$ s$^{-1}$)', style = 'C2.', ax = ax)
 
     # plot regression
     X = pos_subset[['day']]
@@ -495,7 +495,7 @@ def plot_mass_bal_hourly(merged, ind, ax, padding = 10, logscale = 1, power = 1)
     ymin, ymax = get_ylim_visitor(hourly_subset.loc[closed])
     ax.set_ylim(ymin,ymax)
 
-    ax.set_ylabel("m3/s")
+    ax.set_ylabel(r"Water-budget terms (m$^3$ s$^{-1}$)")
     ax.set_title("{0:.0f} day closure from {1} to {2}".format(
                  len(hourly_subset)/24,
                  closed[0].date().strftime("%b %d"),
@@ -544,7 +544,7 @@ def plot_Q(summary_subset, ax):
             linestyle='--', linewidth=0.8)
 
     #ax.set_xlabel("date")
-    ax.set_ylabel("$Q_r$")
+    ax.set_ylabel(r"$Q_r$ (m$^3$ s$^{-1}$)")
     start = pd.to_datetime('2012-01-01').tz_localize("UCT")
     end = pd.to_datetime('2023-01-30').tz_localize("UCT")
     ax.set_xlim(start, end)
@@ -565,7 +565,7 @@ def plot_delta(summary_subset, ax):
             linestyle='--', linewidth=0.8)
 
     ax.set_xlabel("date")
-    ax.set_ylabel("$\Delta h$")
+    ax.set_ylabel(r"$\Delta h$ (m)")
     start = pd.to_datetime('2012-01-01').tz_localize("UCT")
     end = pd.to_datetime('2023-01-30').tz_localize("UCT")
     ax.set_xlim(start, end)
@@ -588,13 +588,13 @@ def plot_seepage(summary_subset, ax, label = None, alpha = 1):
         ax.axvline(pd.to_datetime(f'{year}-01-01'), color='grey', linestyle='--', linewidth=0.8)
 
     #ax.set_xlabel("date")
-    ax.set_ylabel("Seepage $S$ (m$^3$/s)")
+    ax.set_ylabel(r"Seepage $S$ (m$^3$ s$^{-1}$)")
     start = pd.to_datetime('2012-01-01').tz_localize("UCT")
     end = pd.to_datetime('2023-01-30').tz_localize("UCT")
     ax.set_xlim(start, end)
 
 
-def plot_Ks(summary_subset, ax, label = None, alpha = 1):
+def plot_CL(summary_subset, ax, label = None, alpha = 1):
 
     ax.errorbar(summary_subset.date, summary_subset['Ks'], alpha = alpha, label = label,
                  yerr = (summary_subset['CI_high'] - summary_subset['CI_low'])/4,
@@ -609,10 +609,13 @@ def plot_Ks(summary_subset, ax, label = None, alpha = 1):
         ax.axvline(pd.to_datetime(f'{year}-01-01'), color='grey', linestyle='--', linewidth=0.8)
 
     # ax.set_xlabel("date")
-    ax.set_ylabel(r"$C_L$ (m$^2$/s)")
+    ax.set_ylabel(r"$C_L$ (m$^2$ s$^{-1}$)")
     start = pd.to_datetime('2012-01-01').tz_localize("UCT")
     end = pd.to_datetime('2023-01-30').tz_localize("UCT")
     ax.set_xlim(start, end)
+
+# backward-compatible alias
+plot_Ks = plot_CL
 
 
 ###########  Regression functions ###############
@@ -770,9 +773,9 @@ def optimize_exponent(merged_case, ind):
     p_val = np.mean(np.array(r2_diffs) >= r2_diff_obs)
 
     best = pd.Series({
-        "K_tilde_best": best_slope.round(3),
+        "C_L_best": best_slope.round(3),
         "b_best": '{0:.2f}'.format(best_exponent),
-        "K_tilde": slope.round(3),
+        "C_L": slope.round(3),
         "CI_low": CI_low,
         "CI_high": CI_high,
         "R2": '{0:.2f}'.format(r_squared),
@@ -783,10 +786,14 @@ def optimize_exponent(merged_case, ind):
         "AIC_diff": round(AIC_lin - AIC_best, 1),
         "p_val": round(p_val, 3),
         "date": date,
-        "K_tilde_fmt": '{0:.2f} [{1:.2f}-{2:.2f}]'.format(slope, CI_low, CI_high),
+        "C_L_fmt": '{0:.2f} [{1:.2f}-{2:.2f}]'.format(slope, CI_low, CI_high),
         "N": len(pos_subset),
         "Q" : pos_subset['Q'].median(),
-        "duration": duration
+        "duration": duration,
+        # backward-compatible aliases
+        "K_tilde_best": best_slope.round(3),
+        "K_tilde": slope.round(3),
+        "K_tilde_fmt": '{0:.2f} [{1:.2f}-{2:.2f}]'.format(slope, CI_low, CI_high),
     })
     return best
 
@@ -877,10 +884,10 @@ def optimize_exponent_double(merged_case, ind):
     p_val = np.mean(np.array(r2_diffs) >= r2_diff_obs)  
 
     best = pd.Series({
-        "K_tilde_best": best_slope,
+        "C_L_best": best_slope,
         "b_best": best_exponent,
         "offset_best": best_offset,
-        "K_tilde": slope.round(3),
+        "C_L": slope.round(3),
         "CI_low": CI_low,
         "CI_high": CI_high,
         "R2": '{0:.2f}'.format(r_squared),
@@ -891,10 +898,14 @@ def optimize_exponent_double(merged_case, ind):
         "AIC_diff": round(AIC_lin - AIC_best, 1),
         "p_val": round(p_val, 3),
         "date": date,
-        "K_tilde_fmt": '{0:.2f} [{1:.2f}-{2:.2f}]'.format(slope, CI_low, CI_high),
+        "C_L_fmt": '{0:.2f} [{1:.2f}-{2:.2f}]'.format(slope, CI_low, CI_high),
         "N": len(pos_subset),
         "Q" : pos_subset['Q'].median(), 
-        "duration": duration        
+        "duration": duration,
+        # backward-compatible aliases
+        "K_tilde_best": best_slope,
+        "K_tilde": slope.round(3),
+        "K_tilde_fmt": '{0:.2f} [{1:.2f}-{2:.2f}]'.format(slope, CI_low, CI_high),
     })
     return best
 

@@ -1,0 +1,435 @@
+%% 
+%% Copyright 2007-2020 Elsevier Ltd
+%% 
+%% This file is part of the 'Elsarticle Bundle'.
+%% ---------------------------------------------
+%% 
+%% It may be distributed under the conditions of the LaTeX Project Public
+%% License, either version 1.2 of this license or (at your option) any
+%% later version.  The latest version of this license is in
+%%    http://www.latex-project.org/lppl.txt
+%% and version 1.2 or later is part of all distributions of LaTeX
+%% version 1999/12/01 or later.
+%% 
+%% The list of all files belonging to the 'Elsarticle Bundle' is
+%% given in the file `manifest.txt'.
+%% 
+%% Template article for Elsevier's document class `elsarticle'
+
+
+\documentclass[preprint,12pt,authoryear]{elsarticle}
+
+%% Use the option review to obtain double line spacing
+%% \documentclass[authoryear,preprint,review,12pt]{elsarticle}
+
+%% For including figures, graphicx.sty has been loaded in
+%% elsarticle.cls. If you prefer to use the old commands
+%% please give \usepackage{epsfig}
+
+%% The amssymb package provides various useful mathematical symbols
+\usepackage{amssymb}
+\linespread{1.2}
+
+%% The amsthm package provides extended theorem environments
+%% \usepackage{amsthm}
+
+%% The lineno packages adds line numbers. Start line numbering with
+%% \begin{linenumbers}, end it with \end{linenumbers}. Or switch it on
+%% for the whole article with 
+
+
+\usepackage{lineno}
+\usepackage{graphicx}
+\usepackage[colorlinks=true, allcolors=blue]{hyperref}
+\usepackage[a4paper, total={6.in, 9in}]{geometry}
+\linenumbers
+\journal{Ocean \& Coastal Management}
+
+\begin{document}
+
+\begin{frontmatter}
+
+%% Title, authors and addresses
+
+%% use the tnoteref command within \title for footnotes;
+%% use the tnotetext command for theassociated footnote;
+%% use the fnref command within \author or \affiliation for footnotes;
+%% use the fntext command for theassociated footnote;
+%% use the corref command within \author for corresponding author footnotes;
+%% use the cortext command for theassociated footnote;
+%% use the ead command for the email address,
+%% and the form \ead[url] for the home page:
+%% \title{Title\tnoteref{label1}}
+%% \tnotetext[label1]{}
+%% \author{Name\corref{cor1}\fnref{label2}}
+%% \ead{email address}
+%% \ead[url]{home page}
+%% \fntext[label2]{}
+%% \cortext[cor1]{}
+%% \affiliation{organization={},
+%%            addressline={}, 
+%%            city={},
+%%            postcode={}, 
+%%            state={},
+%%            country={}}
+%% \fntext[label3]{}
+
+\title{ Berm Seepage in Intermittently Closed Estuaries: Seasonal and Inter-Annual Variations
+}
+
+%Title suggestions: 
+% Seasonal variability of seepage across the berm in a Northern California intermittently closed estuary
+% Navigating estuarine closures: Berm Seepage in a Mediterranean intermittently closed estuary.
+
+%% use optional labels to link authors explicitly to addresses:
+\author[ars]{Octavia Crompton}
+\affiliation[ars]{
+            organization={USDA-ARS Hydrology and Remote Sensing Laboratory},
+            % addressline={},
+            % city={},
+            % postcode={},
+            % state={},
+            % country={}
+            }
+
+\author[epa]{Dane Behrens}
+
+\affiliation[epa]{organization={EPA},
+            % addressline={}, 
+            % city={},
+            % postcode={}, 
+            % state={},
+            % country={}
+            }
+            
+\author[bml]{John Largier}
+\affiliation[bml]{
+            organization={UC Davis Bodega Bay Marine Lab},
+            % addressline={},
+            % city={},
+            % postcode={},
+            % state={},
+            % country={}
+            }
+            
+%% \affiliation[label2]{organization={},
+%%             addressline={},
+%%             city={},
+%%             postcode={},
+%%             state={},
+%%             country={}}
+
+
+
+\begin{abstract}
+
+ 
+ Intermittently closed estuaries (ICEs) -- bar-built estuaries that periodically close --  are common along mountainous coastlines such as California's.  
+% Periodic closures pose flood risks and water quality challenges. 
+As periodic estuary closures can exacerbate challenges related to water quality and flood risk, tools to forecast water levels during closures can support management decisions, for example, about whether to manually breach an estuary berm.
+ One outstanding knowledge gap hindering the development of such tools is how much water seeps across the berm during closures.
+
+Here, we use a mass balance approach to estimate berm seepage for the Russian River estuary, a  wave-dominated estuary in northern California that closes 1-15 times per year, with typical closure durations of 1-30 days.  We then estimate  an `integrated' berm hydraulic conductivity $\tilde K$ that reflects the joint influences of berm shape and sand conductivity, assuming Darcy's law  describes flow across the berm.
+Seasonally, $\tilde K$ decreases over subsequent closures, possibly due to clogging of the sand pores by fine sediments.
+Interannual variation in  $\tilde K$ likely reflects variation in the shape of the berm, which typically washes away during the winter rains and reforms. 
+
+\end{abstract}
+
+%%Graphical abstract
+% \begin{graphicalabstract}
+%\includegraphics{grabs}
+% \end{graphicalabstract}
+
+%%Research highlights
+\begin{highlights}
+\item Berm seepage rates are quantified for an  intermittently-closed estuary in Northern California
+\item The integrated hydraulic conductivity of the berm decreases seasonally over subsequent inlet closures
+\item Seepage accounts for 20-60\% of river discharge during inlet closures
+\end{highlights}
+
+\begin{keyword}
+Intermittently closed estuaries \sep  Inlet closure \sep  Bar-built estuary
+\end{keyword}
+
+\end{frontmatter}
+
+%% \linenumbers
+
+% 2. Figure 2 – merge with Figure 6 photos (subsequent closures), and break of panel C into new figure
+% 3. Figure annotate photos with seepage rates.  Get rid of panel A
+% 5. table of top 10 closure events?
+%  
+
+\section{Introduction}
+\label{sec:intro}
+
+
+In many smaller estuaries in arid regions and along mountainous coasts, the mouth is closed intermittently by a wave-built sand barrier \citep{mcsweeney2017intermittently, largier2023recognizing}(Winter et al 2024). These intermittently closed estuaries (ICEs) are common in California (TNC report) and represent important rearing habitat for juvenile salmonids (Bond et al, Huber et al, Erin S et al).  Management options in these estuaries are constrained by anthropogenic alterations of the physical system that include changes in the river hydrograph, the mouth state, and development of low-lying flood-prone areas adjacent to the lagoon. 
+
+ICEs are found where estuary basins are small and the shore is exposed to high wave energy. In the absence of river flow during the dry season, these small basins may not have sufficient tidal prism to maintain the mouth channel that carries water to and from the estuary as water level rises and falls with tides in the ocean. This is common where tides are weaker (micro-tidal and meso-tidal regions) and where wave action is stronger (exposed coasts like those in California). Closure events occur when wave power overwhelms the combined power of river and tidal flows through the mouth (Behrens et al 2013). The highest water levels in these estuaries occur during closed-mouth conditions owing to the height of the wave-built berm (Booysen and Theron), resulting in significant flood risk in developed flood-plain areas adjacent to the estuary.
+
+Long-term closure events require a balance between water gain and loss. River inflow to the estuary basin can be matched by losses through evaporation, barrier overflow, and/or seepage through the sand barrier. In arid regions, river inflow may be very low and evaporative loss can exceed inflow, resulting in long-term closure and a drop in water level (Devereux or Groen Ref). Where river flow persists through the dry season, it can often be balanced by a weak flow over the sand barrier, forming a `perched estuary' in which the estuary water level remains above ocean high tides. This is most common in small estuaries where the overflow is too weak to erode the sand. Little attention has been given water loss through seepage, i.e., the flow of water through the sand barrier driven by the head difference between estuary water level and ocean water level, which is expected to be active in perched estuaries and indeed may allow estuaries to sustain a perched state. In arid regions where evaporation exceeds inflow, the estuarine water level may drop below ocean water level and a landward seepage may occur (Ref?). Estuary-ocean seepage has been little studied, despite its importance in managing closure, water levels, and flooding in ICEs. This represents a key knowledge gap. Here we document and quantify berm seepage rates for the Russian River Estuary in California, which is expected to be representative of many other ICEs globally. 
+
+ Specifically, the Russian River Estuary has received attention over recent decades (Magoon, Goodwin, Behrens, Largier 2020), where there is tension between balancing the habitat value of the lagoon for steel head trout (O. mykiss) with high-water extremes that can result in flooding during closure periods. In the Russian River Estuary the hydrograph is managed for water supply in summer and for flood mitigation in winter (Ref), the mouth is altered by the remnants of a failed rock-wall jetty (Ref), and both buildings and State Highway 1 have been constructed in the natural flood plain.
+In the Russian River Estuary, like many other ICEs worldwide, the mouth is breached mechanically to preclude high-water extremes. However, breaching may adversely impact estuarine habitats and downstream ocean ecosystems (Largier et al 2021, Slinger 2107). The seasonality, frequency and persistence of closure events is expected to change in response to sea-level rise (EESLR report?), as well as changes in wave power and river flow due to climate change. Moreover, high water levels are a potentially important source of accretion to marshes in outpacing sea level rise (Thorne 2021). Closure represents a critical management challenge in ICEs, where both policy and management actions can alter closure frequency and persistence with consequences for conservation, recreation, flooding, boating, and fisheries. 
+
+We have compiled 12 years of data on estuary water levels, ocean water levels, and river flow rates to quantify water loss from the Russian River during 30 persistent closure events. We use a mass balance to estimate the loss rate and show that loss rate increases with estuary water level as would be expected from head-driven seepage. Further, we define an integrated berm hydraulic conductivity $\tilde K$ that reflects the combined influences of berm shape and material and show how $\tilde K$ varies over time.
+
+
+Previous introduction:
+
+California has hundreds of smaller estuaries characterized by a wave-built sand barrier across the mouth and seasonal inflows of freshwater. 
+Where estuary basins are small and the shore is exposed to high wave energy, wave deposition may close the mouth during periods of low river inflow.
+Although numerous along mountainous coastlines like California's, these intermittently closed estuaries (ICEs) are comparatively understudied \citep{largier2023recognizing}.
+Nevertheless, ICEs represent a distinct and valuable habitat for wildlife
+that are being threatened on both sides by ongoing sea level rise and coastal development
+
+Managing California’s coastal estuaries involves balancing the competing constraints of maintaining habitat, preserving access and public use, controlling nutrient and pollutant loading, addressing ongoing sea level rise, and preventing flooding to adjacent properties \cite{thorne2017coastal}.
+Even where housing and other infrastructure are less than 10 feet above oceanic high tide levels, the primary flood risk occurs during closed-mouth conditions, when water accumulates behind the berm. 
+This flood risk associated with estuaries during their closed state is expected to become worse with ongoing sea level rise.
+Flood risk during closures can be addressed by breaching the estuary; however, breaching may adversely impact downstream ocean ecosystems, depending on the estuary quality \cite{slinger2017modes}. Moreover, high flows are a potentially important source of accretion to marshes in outpacing sea level rise \citep{thorne2021wetlands}.
+
+ A key knowledge gap in forecasting high water levels is how much water seeps across the berm during closures, and how seepage varies over seasonal and interannual timescales.
+This study quantifies berm seepage for the Russian River estuary in Jenner, California. Combining available observational data for the 2011-2023 period, we use a mass balance approach to estimate the seepage at daily time steps. We then defined an integrated berm hydraulic conductivity $\tilde K$  that reflects the joint influences of the berm shape and material, and assess how $\tilde K$ varies in time.
+
+\begin{figure}
+    \centering
+    \includegraphics[width = 25pc]{figures/study_area.png}
+    \caption{Location and physical characteristics of the study site. Image on the left available from NASA at \url{http:// visibleearth.nasa.gov/}. 
+    Location of inlet is at approximately 38°27'00''N, 123°07'00''W.
+    }
+    \label{fig:study_area}
+\end{figure}
+
+
+\section{Methods}
+\label{sec:methods}
+
+\subsection{Study Area}
+\label{sec:study_area}
+
+The Russian River extends over 175 km within a basin of 3,850 km$^2$ and flows into the Pacific Ocean, 90 km north of San Francisco, California \cite{behrens2013episodic}. Characterized by a Mediterranean climate, most of the precipitation falls during a handful of storms from November through April, and the area remains predominantly dry for the rest of the year. The elevation varies from sea level up to 1,325 meters.
+
+The Russian River is one of many intermittently closed estuaries along California's coastline \cite{johnson1973characteristics, goodwin1996predicting}.
+The estuary closes 0–20 times each year for periods ranging from 1–30 days \citep{behrens2009characterization}.
+Closures result from the inability of the river current to erode and remove sediment  deposited in the inlet channel, due to weakening river flows, inadequate tidal prism, and/or increasing  frictional losses in the inlet channel \citep{behrens2009characterization}.  Closures normally occur during periods of high waves, low tidal ranges, and low river flow, with waves playing the dominant role.  A seasonal increase in wave heights, coupled with sporadic rainfall events and artificial breaching activity, often leads to a series of inlet opening and closure events during October–November.
+
+
+ Historically, the river estuary opened and closed with the seasons. 
+ However, due to the vulnerability of structures adjacent to the estuary,  the Sonoma County Water Agency mechanically breaches the berm under several conditions designed to minimize the negative impact of breaching activities on the estuarine and marine ecosystems of the area.  Thus, artificial breaching often limits the duration of estuary closures.  Additionally, closure periods are often ended by storm events, which can rapidly increase river flow and cause the estuary to overtop the beach.
+
+\subsection{Data}
+
+ Ocean water level data are from the Pt. Reyes tide gage operated by the National Oceanic and Atmospheric Administration (NOAA), 48 km south of the inlet and representative of the ocean at the Russian River mouth. Within the estuary, a water-level gage operated by the Sonoma County Water Agency (SCWA)
+ has collected hourly data 1.5 km upstream of the inlet beginning in 1999. 
+ Flow measurements are available from the U.S. Geological Survey (USGS) stations at Hacienda Bridge (site no. 11467000), 27 km upstream of the inlet and at Austin Creek (site no. 11467200), the only perennial tributary to the lower river, 11 km from the ocean inlet. 
+
+ % http://tidesandcurrents.noaa.gov
+ %  http://waterdata.usgs.gov/nwis
+
+% Closure data from webcam photos.
+The  estuary closure record is based primarily on webcam photos of the Jenner estuary (see examples in Figure \ref{fig:closures}A).  Where images are unavailable (e.g., due to fog), closures can be inferred from the absence of tidal signature in the estuary gauge data, as illustrated by the timeseries of estuary and ocean levels  in Figure \ref{fig:closures}B. 
+Since 2012, there have been 107 closures, 63 with durations of 5 days or longer, and 30 with durations of 10 days or longer (see closure durations as a function of year in Figure \ref{fig:closures}C, and  histogram of closure event durations in Figure \ref{fig:closures}D).
+
+\begin{figure}
+    \centering
+    \includegraphics[width = 30pc]{figures/closure_statistics.png}
+    \caption{
+    (A) Illustration of closed and open states of the estuary, showing the estuary closed on November 19, 2020 (left), and open the following day (right).
+    (B) Example timeseries data for the estuary (orange) and ocean (blue). 
+    (C) Closure duration as a function of year for estuary closures from 2012 - 2023. 
+    (D) Histogram of closure durations over the same 2012 - 2023 period.
+    }
+    \label{fig:closures}
+\end{figure}
+
+
+
+\subsection{Mass balance estimation of seepage rates }
+
+
+We estimated the seepage rate, $S$ [L$^3$/T] at daily timesteps using a mass balance approach:
+
+\begin{equation}
+\label{eq:dVdt}
+    \frac{dV}{ dt} = Q_r - S + O - E A_e
+\end{equation}
+
+\noindent  where $V$  represents the estuary volume [L$^3$], 
+$A_e$   the estuary surface area [L$^2$], 
+$Q_r$ the river discharge [L$^3$/T],
+$S$ the seepage across the berm [L$^3$/T], 
+$O$ wave overwash [L$^3$/T], and $E$  the evaporation rate [L/T].
+We computed $V$ from the estuary depth, $h_e$ [L], using hypsometry data.
+Figure \ref{fig:timeseries}B illustrates the mass balance components for a 23 day closure from August 5-27, 2017.
+ Note that travel time through berm is expected to be many hours (assuming sand $\tilde K$ 400 m/day and berm width $\tilde 100$ m), so we expect a smoothing out of tidal, diurnal and other high-frequency fluctuations. 
+
+To identify upper limits of daily evaporation from the estuary, 
+we estimated the estuary area as 10 ha and the maximum  evaporation rate as 10 mm/day, which yields $E \approx 0.01$ m$^3$/s. Accordingly, we did not include evaporation in the analysis, because this term is likely two orders of magnitude smaller than typical river discharge during closures ($Q_r \approx 1-5$ m$^3$/s).  
+
+We further assumed that overwash is negligible most days ($O \approx 0$).  Rearranging Equation \ref{eq:dVdt} yields:
+
+\begin{equation}
+\label{eq:S}
+    S  = Q_r - \frac{dV}{ dt}.
+\end{equation}
+
+Preliminary analyses showed occasional days with  $Q_r - \frac{dV}{ dt} <0$ due to overwash. That is, the estuary volume increased more than river discharge can account for, which we attribute to waver overwash.
+These days typically occur near the beginning of closures events (i.e., within the first couple of days, before wave action has had a chance to build up the sand barrier).
+To exclude days with overwash, we removed days with negative $ Q_r - \frac{dV}{ dt} < 0$.  Visual inspection of estuary photographs on these days showed overwash in all cases.
+This approach -- along with the unfiltered data -- are compared in the results. 
+
+% We also trialed a forecasting approach in which, for each day, we used discharge $Q_r$ to forecast estuary depth the following day. Specifically, river discharge and  estuary volume  on day $t$ were used to predict the volume  the following day,  as $\hat V_{t+1} = V_{t} + Q_{r,t} \Delta t$.  We then used the hypsometry data to obtain  $\hat h_{t+1}$  from $\hat V_{t+1}$. We expect that $ h_{t+1} = \hat h_{t+1} $ if seepage, evaporation, and overwash are all negligible. If overwash is negligible and seepage is significant (the condition we are interested in), then $ h_{t+1} < \hat h_{t+1} $. Conversely, if  the overwash  exceeds river discharge and seepage combined, then $ h_{t+1} > \hat h_{t+1} $.  Excluding days with  $ h_{t+1} > \hat h_{t+1}$ is a more restrictive criteria than the simpler approach of excluding days with $Q_r - \frac{dV}{ dt} < 0$.  
+
+
+
+  \begin{figure}
+    \centering
+    \includegraphics[width = \textwidth]{figures/overwash.png}
+    \caption{(A) Timeseries of estuary depth and ocean level at Pt Reyes during a closure from September 17 to  October 22, 2014. 
+    Solid lines show 15 minute data, and dotted lines show the daily averaged.
+    Grey shading indicates periods when the estuary was open.
+    (B)  The mass balance components of mass balance at daily intervals: the estuary volume change per day, $dV/dt$  (orange),  river discharge, $Q_r$  (blue) and seepage, $S = Q - dV/dt$ (green). 
+     (C) The berm integrated hydraulic conductivity $\tilde K$ was computed by fitting a regression of $S$ on $\Delta h$.
+    (D) Visual inspection of an estuary photo taken September 15, 2014, illustrating overwash. 
+    }
+    \label{fig:timeseries}
+\end{figure}
+
+\subsection{ Integrated berm hydraulic conductivity  }
+
+We assume that Darcy's law applies to seepage across the berm:
+
+\begin{equation}
+    Q_{b} = K A_b \frac{\Delta h^k}{ W_b}
+\end{equation}
+
+\noindent where $K$ [L/T] is the hydraulic conductivity of the berm, 
+$\Delta h $ the head difference between estuary and ocean,
+$A_b = L_b h_b$ [L$^2$] is the cross-sectional berm area, and $ W_b$ [L] is the berm width between estuary and ocean.  
+ 
+Since the cross-sectional berm area and berm width are unknown, we estimate an `integrated’ hydraulic conductivity $\tilde K$ [L$^2$/T]:
+
+\begin{equation}
+    \tilde K =  \frac{K A_b}{ W_b}
+\end{equation}
+
+For each closure event, we plotted $S$ (inferred through mass balance at daily time intervals) against the head difference between ocean and estuary, and fit a regression line to obtain $\tilde K$ (see Figure \ref{fig:timeseries}C).
+If the data is not filtered to exclude days with overwash, $\tilde K$ represents an integrated hydraulic conductivity to both seepage and overwash (mass balance calculations more accurately represent the combined seepage and overwash, $S + O$).
+
+
+Seepage  could alternatively be estimated from the head difference between estuary and ocean; however, this requires knowledge of the berm dimensions and the  hydraulic conductivity of the sand \citep{behrens2015quantified}. 
+While the berm shape can be estimated from aerial or satellite imagery, this likely differs from the hydraulically-active area of the berm (i.e., the cross sectional area of the berm across which flow occurs).
+
+
+\section{Results}
+
+
+\begin{figure}
+    \centering
+    \includegraphics[width = \textwidth]{figures/summary_w_overwash.png}
+    \caption{(A) Median seepage $S$  computed for each closure, with error bars showing bootstrapped confidence intervals on the mean.
+    (B) Integrated hydraulic conductivity determined through regression of $S$ on $\Delta h$ for each closure event.  
+    (C) Ratio of seepage to river discharge, $S/Q_r$. 
+    Only closure events with at least 5 days of data are included.  
+    }
+    \label{fig:summary}
+\end{figure}
+
+
+Figure \ref{fig:summary}A shows the mean seepage rates as a function of the closure date for closures with durations of 5 days or longer.  Orange markers show the data filtered to exclude overwash ($S$), and blue shows the unfiltered results ($S + O$).  
+In the unfiltered case, `seepage' values are smaller because overwash is counted as `negative' seepage.
+
+Figure \ref{fig:summary}B shows the integrated hydraulic conductivity $\tilde K$ versus the date for closure events  with at least 5 days of data. In some years, $\tilde K$ decreases over subsequent closures (notably, in 2016 and 2017), possibly reflecting pore clogging by fine particles. $\tilde K$ values are smaller with overwash included, reflecting smaller numerator values in regression (i.e., $O+S < S$).
+ Lastly, Figure \ref{fig:summary}C shows the ratio of seepage to river discharge, $S/Q$, which ranges from approximately 0.2 to 0.6, with significant variability both within and between years.
+
+ To examine seepage trends occurring within closures, we fit a linear regression of $S$ on time for each closure event,  limiting the analysis to closures lasting at least 10 days. For the 30 closures included in the analysis, $dS/dt$ ranges from 0.02 to 0.3 m$^3$s$^{-1}$ day$^{-1}$ (median 0.1).  
+ $dS/dt$ tends to be larger and more variable for shorter closures, and decrease with increasing closure duration (see Figure \ref{fig:trends}A).  $dS/dt$ also increases with increasing $S$ (see Figure \ref{fig:trends}C). 
+
+  \begin{figure}
+    \centering
+    \includegraphics[width = 30pc]{figures/seepage_trends.png}
+    \caption{ Scatter plots show seepage trends $dS/dt$ versus closure duration (A) and
+    seepage rate $S$ (B).  Only closure events lasting at least 10 days are included. }
+    \label{fig:trends}
+\end{figure}
+
+
+
+\section{Discussion}
+
+Water loss from the Russian River Estuary via seepage through the sand barrier is well behaved (e.g., Figure 3), increasing as expected with an increase in head difference, i.e., the difference between estuary and ocean water level. Observed seepage losses are of order 1 m$^3$/s, and can increase to more than 2 m$^3$/s.  The maximum seepage rates are limited by  the current management regime, under which the mouth is breached when estuary head exceeds about 2 m (9 ft above MMLW). 
+
+The integrated hydraulic conductivity $\tilde K$ represents the hydraulic conductivity $K$ with the cross-sectional area of the flow (product of width $W_b$ and depth of flow $h$) and the length of the flow path $L$ along which hydraulic pressure drops from estuary to ocean. As the estuary water level rises, the hydraulic gradient increases, and one may expect the flow depth to also increase, yielding a quadratic dependence  on estuary water level. If width of flow increases or length of flow path decreases with increasing water level, one may expect even stronger dependence on estuary water level.  However, when fitting seepage rate $S$ to estuarine head $\Delta h$, the best fit occurs for an  exponent of 1.25 and the fit is not much better than a simpler linear fit, which we use because it gives us single parameter as an index of seepage response to estuarine head. 
+
+However, the low value of the exponent indicates that neither the depth nor width of the flow changes significantly with increasing estuarine water level, which in turn suggests a preferred conduit for seepage (without any change in cross-sectional area). Further, a back-of-the envelope estimate of seepage through a coarse sand barrier with $K ~ 0.00052$ m/s, $W ~ 300$ m, $H ~ 5$ m, and $L ~ 50$ m yields a flux of $~0.02$ m$^3$/s for every 1 m of estuarine head. For a gravel berm, the seepage flux increases to ~0.09 m$^3$/s. This suggests that the barrier is not uniform and rather includes some high-conductivity conduits, which can `pipe' the water through the and barrier, perhaps associated with the remnant jetty or naturally occurring beneath the coarse sand berm. More realistically, the integrated hydraulic conductivity is an integration of non-uniform $K(y,z)$ over vertical $z$ and cross-stream y dimensions of the flow through the barrier. 
+
+While $\tilde K$ has an aggregate value close to 1.0 m2/s, it varies between closure events and displays an interesting tendency for decrease from higher values in early summer to lower values in the fall (e.g., $\tilde K$ values in 2017, Figure 4). The lowest values ~0.5 m2/s are found after winters in which the barrier was not removed and rebuilt (e.g., $\tilde K$ decreases from 2019 to 2020 to 2021) and the highest values ~1.5 m2/s are found after a major winter flow event (e.g., early 2017). Seasonal and interannual reduction in integrated hydraulic conductivity $\tilde K$ with time suggests that the aquifer becomes clogged, but it could also result from an increase in the length of the flow path as the barrier thickens, aggrading seaward during calm periods.
+
+Uncertainty in seepage estimates could be due to several factors, but the smooth variation in $S$ values from day to day (in the absence of wave overwash) suggests that uncertainty is limited, accounting for variability of order 0.1 m$^3$/s, which is an order of magnitude smaller than seepage rates. Errors in the mass balance calculation can come from (i) neglecting evaporative loss of freshwater, (ii) unaccounted wave overwash events, (iii) groundwater exchange, and (iv) differences in ocean water level between Point Reyes gage at Russian River mouth associated with wind and wave setup.
+Also, we have looked for high-frequency variability in $S$ estimates associated with error in ocean level estimates due to wind or wave setup, and find no high-frequency variability in $S$ values during short-lived wind or wave events. While \citet{de2011submarine}  quantify tidal pumping from the beach at a site in Stinson Beach, in the case of closed-mouth estuaries, the flux through the sand is dominated by the quasi-steady head due to a perched estuary water level.
+
+
+Clearly the estuary exports water through the sand barrier during closure, and this loss grows with increased elevation of the water level in the estuary. Ultimately, if the berm is high enough, seepage will increase to match the rate of river inflow and the estuary water level will remain steady. This steady state is never achieved in the Russian River Estuary as the mouth is breached mechanically before estuarine head reaches 2 m.   At this level, seepage can account for a loss of about 2 m$^3$/s (approximately 60 cfs), which is less than typical summer river flows that are managed to maintain adequate water availability in the lower river. However, in the 2014 drought year when river flow rate was decreased to $approx$50 cfs, seepage balanced that inflow and water level remained constant in the estuary for the first 10 days of October. In years with higher river flow (typically 100 cfs), a steady state could be achieved if water level rose to about 3 m above ocean water level. It seems likely that this occurred prior to development of the estuary, and closures that started in spring could persist for months through the summer low-flow months. Alternatively, closure may have persisted with estuarine water level cresting the crest of the berm but with such a low flow rate that the berm was not scoured. In this perched estuary state, one can imagine order 0.5 m$^3$/s flowing over the sand barrier as a 10 m wide and 0.1m deep flow with velocities below 0.5 m/s (too slow to scour sand).  
+
+Prolonged closure allows a freshwater layer (epilimnion) to develop in the estuary, which offers critical habitat for freshwater-acclimated young steelhead. Further a cool, moderate salinity metalimnion also can develop, offering habitat for smolts to grow prior to leaving the estuary and entering the ocean in the fall. The deep and cold hypolimnion goes anoxic beneath extreme stratification that precludes reoxygenation and without any significant photosynthetically active radiation.  
+
+As in the Russian River Estuary, it is expected that seepage losses are significant in other ICEs where the water level is allowed to rise significantly above the ocean water level – which can only happen where river inflow continues through closure periods.  Different barrier configurations in terms of dimensions and sediment types result in different flow rates.  And may see interesting differences in $\tilde K$ between seasons and years due to clogging and/or changes in berm shape. More work remains to be done.  Also note reverse seepage in SoCal.
+
+
+\label{sec:discussion}
+
+  \begin{figure}
+    \centering
+    \includegraphics[width = \textwidth]{figures/interannual_variability.png}
+    \caption{Photos taken on November 11, 2012 and December 5, 2020, illustrating larger interannual changes in the berm shape.  In 2012, large $\tilde K$ is consistent with a narrowing berm by the jetty.  Likewise, in 2020, small $\tilde K$ is consistent with the wider berm shape.   }
+    \label{fig:interannual}
+\end{figure}
+
+Previous discussion:
+
+Visual comparison between closures suggests that interannual variability in $\tilde K$ is largely due to variability in the berm shape.
+To illustrate, Figure \ref{fig:interannual} shows webcam images of  closure events in 2018 and 2021.
+In 2012, high $S$ may reflect narrow berm dimensions, while in 2020, low $S$ may reflect wider berm. 
+
+  \begin{figure}
+    \centering
+    \includegraphics[width = \textwidth]{figures/subsequent_closures.png}
+    \caption{Photos taken November 7, 2018 and December 8, 2018, illustrate how the berm shape varies little over subsequent closures within the same year. }
+    \label{fig:2018_closures}
+\end{figure}
+
+On seasonal timescales, changes in the berm shape are relatively small (see Figure \ref{fig:2018_closures} showing photos of two closure events separated by approximately one month).
+Assuming that the berm dimension varies little within a given season, $\tilde K$ variability may reflect changing hydraulic conductivity of the berm (i.e, as fine sediments clog the sand pores). 
+
+ We now compare the  $\tilde K$  values estimated using mass balance approaches to  back-of-the-envelope estimates using Darcy's law.
+Assuming $K = 410$ m/day for a mix of gravel and sand \citep{masters1991introduction}, $L_b = 300 $ m for the length of the berm \citep{behrens2009characterization},
+ $W_b = 50$ m for the berm width, and $h_b = 10$ m for the a hydraulically-active depth,  combining yields $\tilde K = K W_b h_b/L_b = 0.28$ m$^3$/s.  This estimate is smaller than typical $\tilde K$ values determined by  mass balance, which may in part be attributable to pipes and other preferential flow paths.  
+
+The study ignores groundwater surface water interactions. While the linear relationship between $\Delta h$ and $S$ suggests that seepage is a dominant factor, this remains a major study limitation.
+Further mapping of aquifers and their connections to the river/estuary system, along with models that resolve groundwater-surface water interactions, could better distinguish seepage from groundwater fluxes.
+
+% The study finding that seepage rates tend to increase during closures has  management implications.  The ability to estimate steady state seepage can inform decision-making about if/when to breach the berm.
+% An important question is therefore, what is the steady state seepage rate for a given berm shape? 
+
+\section{Conclusion}
+
+The study combines a multiyear record of the daily condition of the inlet, estuary gauge and river discharge data to compute seepage rates during estuary closures.
+We then estimated an integrated hydraulic conductivity $\tilde K$ by regression of $S$ on the head difference between ocean and estuary.
+Interannual variability in the integrated berm conductivity, $\tilde K$, reflects variations in berm shapes between years. 
+On seasonal timescales, decreasing $\tilde K$ over subsequent closures may reflect clogging by fine particles.
+
+
+ 
+%% If you have bibdatabase file and want bibtex to generate the
+%% bibitems, please use
+%%
+ \bibliographystyle{elsarticle-harv} 
+ \bibliography{local.bib}
+
+
+\end{document}
+
+\endinput
+%%
+
