@@ -19,6 +19,9 @@ data/**
 # --- Figures ---
 # Generated figures (reproducible) ignored:
 figures/**
+# Fig 1 Earth Engine outputs (GeoTIFFs + rendered figures, reproducible):
+fig1_out/
+notebooks/fig1_out/
 # Hand-edited figures & decks are kept:
 figures_edited/**
 # If you want to ignore PowerPoints even in edited figs, uncomment:
