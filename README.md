@@ -65,7 +65,6 @@ conda activate russian-river-seepage
 | `4 Crest` | Berm crest elevation analysis |
 | `Grouped_vs_Pooled_3models` | Pooled best-by-holdout-RMSE fits for the candidate models |
 | `Russian River - visitor center - USGS` | Comparison of visitor-center and USGS estuary gauges |
-| `Russian River – 15 min – delta h - submitted` | 15-minute Δh analysis from the submitted version |
 
 ## Repository structure
 
