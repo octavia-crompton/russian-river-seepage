@@ -19,6 +19,8 @@ data/**
 # --- Figures ---
 # Generated figures (reproducible) ignored:
 figures/**
+# README banner image is kept:
+!figures/russian_river_inlet.jpg
 # Fig 1 Earth Engine outputs (GeoTIFFs + rendered figures, reproducible):
 fig1_out/
 notebooks/fig1_out/
