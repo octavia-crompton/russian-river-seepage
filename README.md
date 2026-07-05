@@ -66,17 +66,16 @@ conda activate russian-river-seepage
 | `Grouped_vs_Pooled_3models` | Pooled best-by-holdout-RMSE fits for the candidate models |
 | `Russian River - visitor center - USGS` | Comparison of visitor-center and USGS estuary gauges |
 | `Russian River – 15 min – delta h - submitted` | 15-minute Δh analysis from the submitted version |
-| `russian_river_fig1.py` | Study-area location map (manuscript Figure 1) |
 
 ## Repository structure
 
 ```
 ├── data/                 # Raw, interim, and processed data
 ├── figures/              # Generated figures
-├── notebooks/            # Analysis notebooks and figure scripts
+├── notebooks/            # Analysis notebooks
 ├── overleaf/             # Manuscript LaTeX source (synced with Overleaf)
 ├── references/           # Literature
-├── scripts/              # Utility scripts (e.g., headless notebook runner)
+├── scripts/              # Utility scripts (Fig 1 location map, headless notebook runner)
 ├── src/                  # Reusable Python modules
 │   ├── seepage_analysis.py
 │   ├── seepage_plots.py
