@@ -8,7 +8,7 @@
 \usepackage{graphicx}
 \usepackage[colorlinks=true, allcolors=blue]{hyperref}
 \usepackage[a4paper, total={6.in, 9in}]{geometry}
-% \linenumbers
+\linenumbers
 \journal{Estuaries and Coasts}
 
 %% NOTE (review): class is still elsarticle + elsarticle-harv. The Springer
@@ -116,7 +116,7 @@ Since 2012, there have been 107 closures, 63 with durations of 5 days or longer,
 
 \begin{figure}
     \centering
-    \includegraphics[width = \textwidth]{figures/closure_statistics.png}
+    \includegraphics[width = \textwidth]{figures/fig3_closure_statistics.png}
     \caption{
     (A) Illustration of closed and open states of the estuary, showing the estuary closed on November 19, 2020 (left), and open the following day (right).
     (B) Example timeseries of water level $h$ for the estuary (orange) and ocean water level $h_{\mathrm{ocn}}$ (blue).
@@ -128,8 +128,8 @@ Since 2012, there have been 107 closures, 63 with durations of 5 days or longer,
 
 \begin{figure}
     \centering
-    \includegraphics[width = 34pc]{figures/berm_schematic.png}
-    \caption{Berm schematic illustrating terms in Equation 1.}
+    \includegraphics[width = \textwidth]{figures/berm_schematic.png}
+    \caption{Water balance and seepage at the closed Russian River estuary. (A) Cross-section showing the mass-balance terms (Equation~\ref{eq:dVdt}): gains (blue) from river discharge $Q_r$, wave overwash $O$, and precipitation $P$; losses (orange) from seepage $S$ and evaporation $E$; and net groundwater exchange $Q_{\mathrm{gw}}$ (grey). Inverted triangles mark the estuary stage $h$ and ocean level $h_{\mathrm{ocn}}$. (B) Seepage detail: the head difference $\Delta h = h - h_{\mathrm{ocn}}$ drives flow along the phreatic surface (dashed) through the barrier over flow-path length $L_b$ and saturated thickness $h_b$, giving $S = K\,A_b\,\Delta h / L_b$ with $A_b = W_b\,h_b$ (Equation~\ref{eq:Darcy}).}
     \label{fig:schematic}
 \end{figure}
 
@@ -140,7 +140,7 @@ We estimated the seepage rate, $S$ [L$^3$/T] at daily timesteps using a mass bal
 
 \begin{equation}
 \label{eq:dVdt}
-    \frac{dV}{ dt} = Q_r + P\,A_e(h) + O + Q_{\mathrm{gw}} - \big(S + E\,A_e(h) + Q_{\mathrm{ov}}\big)
+    \frac{dV}{ dt} = Q_r + P\,A_e(h) + O + Q_{\mathrm{gw}} - \big(S + E\,A_e(h) \big)
 \end{equation}
 
 \noindent  where $V$  represents the estuary volume [L$^3$],
@@ -149,14 +149,14 @@ $Q_r$ the river discharge [L$^3$/T],
 $P$ the precipitation rate [L/T],
 $S$ the seepage through the berm [L$^3$/T],
 $O$ wave-driven overwash [L$^3$/T],
-$E$  the evaporation rate [L/T],
-$Q_{\mathrm{gw}}$ net groundwater exchange (positive into the estuary) [L$^3$/T], and
-$Q_{\mathrm{ov}}$ overflow across the berm [L$^3$/T]
+$E$  the evaporation rate [L/T], and
+$Q_{\mathrm{gw}}$ net groundwater exchange (positive into the estuary) [L$^3$/T]
+and % $Q_{\mathrm{ov}}$ overflow across the berm [L$^3$/T]
 (see schematic in Figure \ref{fig:schematic}).
 Implicit in this mass balance is the assumption that groundwater-surface water exchanges are negligible and/or not persistent.
-We computed $V$ as a function of the estuary water level $h$ [L] using hypsometric data \citep{EDS_2011_LowerRussianRiver_Bathy}.
+We computed $V$ as a function of estuary water level $h$ from a stage--volume (hypsometric) relationship derived from a 2011 bathymetric survey of the lower Russian River conducted for the Sonoma County Water Agency \citep{EDS_2011_LowerRussianRiver_Bathy}.
 Figure \ref{fig:overwash}B illustrates the mass balance components for a 36-day closure from September 17 to October 22, 2014.
-A daily timestep was used as travel times through berm are expected to be of the order of a day (estimated as $L_b/K$, assuming sand $K \approx$ 45 m/day and berm width $\approx 50$ m), thus smoothing out the effect of tidal, diurnal and other high-frequency fluctuations on seepage rate.
+A daily timestep was used as travel times through berm are expected to be of the order of a day (estimated as $L_b/K$, with $L_b \approx 50$ m and sand $K \approx$ 45 m/day), thus smoothing out the effect of tidal, diurnal and other high-frequency fluctuations on seepage rate.
 
 To identify upper limits of daily evaporation from the estuary, we estimated the estuary area as 1 km$^2$ and the maximum  evaporation rate as 10 mm/day, which yields $E A_e(h) \approx 0.1$ m$^3$/s. Accordingly, we did not include evaporation in the analysis, because this term is likely an order of magnitude smaller than typical river discharge during closures ($Q_r \approx 1-5$ m$^3$/s).  Precipitation was retained in the mass balance using daily rainfall records from the nearby Bodega Marine Laboratory station, converted to a volumetric flux as $P\,A_e(h)$; because the analyzed closures occur during the dry season, this term contributed negligibly to the seepage estimate (less than 0.3\% of $S$ on every analyzed day). Groundwater exchange and cross-berm overflow were neglected during the analyzed closure days.
 
@@ -169,8 +169,7 @@ With these simplifications, rearranging Equation \ref{eq:dVdt} yields:
 
 Preliminary analyses showed occasional days with  $Q_r - \frac{dV}{ dt} <0$, i.e., days in which the estuary volume increased more than river discharge can account for, which we attribute to wave overwash. Overwash can occur on days with big waves at high tide and is most common near the beginning of closures events (i.e., within the first couple of days, before wave action builds up the sand barrier crest elevation).
 
-To exclude days with overwash, we applied a filtering approach that used river discharge $Q_r$ to forecast estuary depth on the following day.
-Specifically, river discharge and  estuary volume  on day $t$ were used to predict the estuary volume on the following day,  as $\hat V_{t+1} = V_{t} + Q_{r,t} \Delta t$.    $\hat h_{t+1}$  was then calculated from $\hat V_{t+1}$ using hypsometry data.
+To exclude days with overwash, we applied a filtering approach that used river discharge $Q_r$ to forecast estuary depth on the following day. Specifically, river discharge and  estuary volume  on day $t$ were used to predict the estuary volume on the following day,  as $\hat V_{t+1} = V_{t} + Q_{r,t} \Delta t$.    $\hat h_{t+1}$  was then calculated from $\hat V_{t+1}$ using hypsometry data.
 If seepage, evaporation, and overwash are all negligible, we expect that $h_{t+1} = \hat h_{t+1}$. If overwash is negligible and seepage is significant, then $ h_{t+1} < \hat h_{t+1} $. Conversely, if  the overwash  exceeds seepage, then $h_{t+1} > \hat h_{t+1} $.  To exclude overwash days, we removed days with $h_{t+1} > \hat h_{t+1}$ and $Q_r - \frac{dV}{ dt} < 0$ from the analysis (e.g., Figure 4C: September 18-19 and 25-26, and October 12-13).
  Excluding days with  $ h_{t+1} > \hat h_{t+1}$ is a more restrictive criteria than the simpler approach of excluding days with $Q_r - \frac{dV}{ dt} < 0$.
 Visual inspection of estuary photographs confirmed overwash on all excluded days.
@@ -183,10 +182,10 @@ Visual inspection of estuary photographs confirmed overwash on all excluded days
 
   \begin{figure}
     \centering
-    \includegraphics[width = \textwidth]{figures/overwash.png}
+    \includegraphics[width = \textwidth]{figures/fig4_overwash.png}
     \caption{(A) Timeseries of estuary water level $h$ and ocean level $h_{\mathrm{ocn}}$ during a closure from September 17 to October 22, 2014.
     Solid lines show 15 minute data, and dotted lines show the daily averaged data. Grey shading indicates periods when the estuary mouth was open.
-    (B) The mass balance components at daily intervals: the estuary volume change per day, $dV/dt$  (orange),  river discharge, $Q_r$  (blue) and seepage, $S = Q - dV/dt$ (green). In the $S$ timeseries, smaller marker sizes indicate points that were filtered out to exclude days dominated by overwash. (C) The berm integrated hydraulic conductance $C$ was computed by fitting a regression of $S$ on $\Delta h$ for days not excluded as overwash (see Section \ref{sec:MB}).
+    (B) The mass balance components at daily intervals: the estuary volume change per day, $dV/dt$  (orange),  river discharge, $Q_r$  (blue) and seepage, $S = Q - dV/dt$ (green). In the $S$ timeseries, smaller marker sizes indicate points that were filtered out to exclude days dominated by overwash. (C) The berm integrated hydraulic conductance $C_L$ was computed by fitting a regression of $S$ on $\Delta h$ for days not excluded as overwash (see Section \ref{sec:MB}).
     (D) A photo of the estuary mouth taken September 25, 2014, in which overwash is visible.
     }
     \label{fig:overwash}
@@ -204,57 +203,49 @@ We assume that Darcy's law applies to seepage across the berm:
 
 \noindent where $K$ [L/T] is the mean hydraulic conductivity of the berm, $\Delta h = h - h_{\mathrm{ocn}}$  [L] is the head difference between estuary and ocean, $A_b$ [L$^2$] is the cross-sectional berm area, and $L_b$ [L] is the berm width between estuary and ocean (the distance over which hydraulic pressure drops from estuary to ocean). More precisely, $A_b = W_b h_b$ is the hydraulically active cross-sectional area of flow,  where $W_b$ and $h_b$ are the along-shore width and vertical height, respectively, of water flow through the berm.
 
-As the estuary water level rises, the hydraulic gradient increases, and one may also expect $A_b$ or $L_b$ to vary, yielding a nonlinear dependence of $S$ on estuary water level  $ h$. To make any such dependencies explicit, $A_b$ and $L_b$ are expressed as $A_b = A'_b  h^x$ and $L_b = L'_b  h^y$, where $A'_b$ and $L'_b$ are constants and the exponents $x$ and $y$ account for any potential dependencies of $A_b$ and $L_b$ on $ h$.
-Equation \ref{eq:Darcy} is rewritten:
-
-\begin{equation}
-    S = K (A'_b  h^x) \frac{\Delta h}{ (L'_b  h^y)}.
-    \label{eq:Darcy_w_exponents}
-\end{equation}
-
-However, the flow cross-sectional area and berm width are unknown, as are their dependencies on estuary water level. The cross sectional area is anticipated to increase with increasing estuary water level ($x >0$) and the berm width is expected to decrease ($y < 0$).  While the berm shape can be estimated from aerial or satellite imagery, this likely differs from its hydraulically-active area. We therefore estimate an effective hydraulic conductance $C$:
+As the estuary water level rises, the hydraulic gradient increases, and the berm geometry may itself change: a higher estuary stage can thicken the saturated cross-section $A_b$ and shorten the flow path $L_b$, so that the ratio $A_b/L_b$ --- and hence the conductance --- may increase with stage. Because $A_b$ and $L_b$ are not directly observable and their dependence on stage is unknown, we absorb the geometry into an effective hydraulic conductance $C$:
 
 \begin{equation}
     S = C\,\Delta h,
     \label{eq:tildeK}
 \end{equation}
 
-\noindent where $C =  K A'_b / L'_b$.
+\noindent where $C = K\,A_b/L_b$. While the berm shape can be estimated from aerial or satellite imagery, this likely differs from its hydraulically-active area.
 
-Because mouth-scale geometry is unavailable and the analysis is restricted to closed-mouth periods, we do not model the berm dimensions $A_b$ and $L_b$ explicitly. Instead, we treat the geometric factor $A_b/L_b$ in Equation~\ref{eq:tildeK} as an empirical function of estuary stage and test whether the visitor-center water level $h_V$ serves as a proxy for it, comparing a constant-conductance (linear) model with an offset-power model in which the conductance varies with stage.
+%% --- Power-law (geometric) derivation of the stage dependence, retained for reference; ---
+%% --- NOT rendered in the live text. Can be reinstated if a reviewer requests it.        ---
+%% Let h_e denote estuary water DEPTH (the physically relevant quantity governing the berm
+%% geometry), related to the gauge level h by   h_e = h + \delta_V ,  where \delta_V offsets
+%% the NAVD88 datum (h = 0 near mean low tide) to the effective base of the flow path.
+%% SIGN: the relation is PLUS \delta_V, matching the code ( \zeta_V = (h + \delta_V)/m_V ).
+%% The fitted \delta_V is negative (~ -1.72 m), so h_e = h + \delta_V behaves as a THRESHOLD
+%% ( h_e -> 0 at gauge level h = -\delta_V ~ 1.72 m ), not a positive depth datum.
+%% Writing the geometry as power laws in depth:
+%%   A_b = A'_b h_e^x ,   L_b = L'_b h_e^y        (x > 0: area grows; y < 0: path shortens)
+%%   S = K (A'_b h_e^x) \Delta h / (L'_b h_e^y) = K (A'_b/L'_b) h_e^{x-y} \Delta h
+%% so the effective conductance C = K A'_b/L'_b and the exponent b_V plays the role of (x - y):
+%%   S = C_V \zeta_V^{b_V} \Delta h ,  with  \zeta_V = (h + \delta_V)/m_V = h_e / m_V .
+%% ----------------------------------------------------------------------------------------------
 
-Combining the exponents in Equation~\ref{eq:Darcy_w_exponents} gives a geometric modulation $h^{\,x-y}$ referenced to estuary \emph{depth}, whereas the gauge reports $h_V$ relative to the NAVD88 datum ($h_V = 0$ near mean low tide). Because the active seepage cross-section need not vanish at $h_V = 0$, we introduce an additive offset $\delta_V$ so that $(h_V + \delta_V)$ approximates the depth-like quantity governing $A_b/L_b$. Normalizing by the median, $\zeta_V = (h_V + \delta_V)/m_V$, keeps the term dimensionless, so that $C_V$ retains units of conductance and equals the effective conductance at median stage ($\zeta_V = 1$); the exponent $b_V$ plays the role of $(x-y)$, with $b_V > 0$ corresponding to a seepage cross-section that grows and/or a flow path that shortens as the estuary fills.
+Because mouth-scale geometry is unavailable and the analysis is restricted to closed-mouth periods, we do not model the berm dimensions $A_b$ and $L_b$ explicitly. Instead, we treat the geometric factor $A_b/L_b$ in Equation~\ref{eq:tildeK} as an empirical function of estuary stage and test whether the gauge level $h$ serves as a proxy for it, comparing a constant-conductance (linear) model with a nonlinear model in which the conductance varies with stage.
 
-Because $h_V$ and $\Delta h$ share the estuary-stage component, the conductance modulator $\zeta_V(h_V)$ and the driving head $\Delta h$ are not fully independent; the ocean term in $\Delta h$ contributes mainly tidal variance.
+Because the berm geometry responds to water depth within the barrier, whereas the gauge level $h$ is referenced to the NAVD88 datum ($h = 0$ near mean low tide), and the active seepage cross-section need not vanish at $h = 0$, we introduce an additive offset $\delta_V$ so that $(h + \delta_V)$ serves as the depth-like stage variable governing $A_b/L_b$.
 
-\paragraph{Linear (constant conductance).}
-\[
-S \;=\; C_L\,\Delta h.
-\]
+Because $h$ and $\Delta h$ share the estuary-stage component, the conductance modulator $\zeta_V(h)$ and the driving head $\Delta h$ are not fully independent; the ocean term in $\Delta h$ contributes mainly tidal variance.
 
-\paragraph{Offset-power on visitor-center water level $h_V$.}
-\[
-S \;=\; C_V\,\zeta_{V}^{\,b_V}\,\Delta h,
-\qquad
-\zeta_V \equiv \frac{h_V + \delta_V}{m_V},\qquad
-m_V = \mathrm{median}(h_V) + \delta_V.
-\]
-
-\paragraph{Definitions.}
-\begin{itemize}
-  \item $S$ : seepage discharge (outflow from the estuary through the barrier).
-  \item $\Delta h$ : water-level difference driving flow (estuary stage minus ocean stage).
-  \item $C_L$ : constant (linear) conductance parameter.
-  \item $h_V$ : visitor-center water level (estuary stage metric).
-  \item $C_V$ : effective conductance at median stage ($\zeta_V = 1$) [$\mathrm{L}^2\,\mathrm{T}^{-1}$].
-  \item $b_V$ : power-law exponent controlling sensitivity of conductance to $h_V$.
-  \item $\delta_V$ : additive offset locating the effective stage datum of the conductance modulation; a negative $\delta_V$ implies a threshold stage $h_V = -\delta_V$ below which the modulation factor approaches zero.
-  \item $\zeta_V$ : dimensionless scaled water level, $\zeta_V = (h_V + \delta_V)/m_V$.
-  \item $m_V$ : median normalization, $m_V = \mathrm{median}(h_V) + \delta_V$.
-\end{itemize}
+We compare two forms for the seepage--head relationship. The first is a linear, constant-conductance model, $S = C_L\,\Delta h$, in which the conductance $C_L$ does not vary with stage. The second allows the conductance to vary with estuary water level through a nonlinear (offset-power) form,
+\begin{equation}
+  S \;=\; C_V\,\zeta_V^{\,b_V}\,\Delta h,
+  \qquad
+  \zeta_V = \frac{h + \delta_V}{m_V},
+  \qquad
+  m_V = \mathrm{median}(h) + \delta_V,
+  \label{eq:offsetpower}
+\end{equation}
+where $\zeta_V$ is a dimensionless scaled water level and $m_V$ is its median normalization, so that $C_V$ retains units of conductance and equals the effective conductance at median stage (i.e., where $\zeta_V = 1$). The exponent $b_V$ sets how strongly conductance varies with stage: a positive $b_V$ corresponds to a seepage cross-section that grows, and/or a flow path that shortens, as the estuary fills. The offset $\delta_V$ locates the effective stage datum of this modulation; a negative $\delta_V$ implies a threshold stage, $h = -\delta_V$, below which the conductance factor approaches zero. The linear model is the special case $b_V = 0$, for which $\zeta_V^{\,b_V} = 1$ and $S = C_L\,\Delta h$.
 
 We fit the linear model both pooled (one $C_L$ from all closure days) and per event (a separate $C_L$ for each closure), in each case by through-origin ordinary least squares regression of $S$ on $\Delta h$ (see Figure~\ref{fig:overwash}C for illustration). Per-event linear fits were restricted to closures with at least five daily data points ($N \ge 5$), which provides at least four residual degrees of freedom for the through-origin fit and enough points to bootstrap a within-event 95\% confidence interval on $C_L$; the seasonal pattern in $C_L$ is insensitive to raising the threshold to $N \ge 6$ or $N \ge 8$.
-The offset-power model was fit at the pooled level, estimating $C_V$, $\delta_V$, and $b_V$ by minimizing the sum of squared residuals, with $\delta_V$ constrained so that $h_V + \delta_V > 0$. Per-event offset-power fits are not reported, because the three free parameters are weakly identified within individual closures; the per-event panels of Figure~\ref{fig:compare_fits} (A--C) therefore show only the per-event linear fit, while the pooled offset-power fit is shown alongside the pooled linear fit in panel D.
+The nonlinear model was fit at the pooled level, estimating $C_V$, $\delta_V$, and $b_V$ by minimizing the sum of squared residuals, with $\delta_V$ constrained so that $h + \delta_V > 0$. Per-event nonlinear fits are not reported, because the three free parameters are weakly identified within individual closures; the per-event panels of Figure~\ref{fig:compare_fits} (A--C) therefore show only the per-event linear fit, while the pooled nonlinear fit is shown alongside the pooled linear fit in panel D.
 
 Model performance was evaluated using the Akaike and Bayesian Information Criteria (AIC, BIC), computed as
 \begin{equation}
@@ -262,27 +253,27 @@ Model performance was evaluated using the Akaike and Bayesian Information Criter
     \qquad
     \mathrm{BIC} = n \cdot \ln(\mathrm{SSE}/n) + k \ln n,
 \end{equation}
-where $n$ is the number of observations, $\mathrm{SSE}$ is the sum of squared residuals, and $k$ is the number of model parameters ($k = 1$ for the linear model, $k = 3$ for the offset-power model). Lower values indicate a more parsimonious model. We report the pooled AIC and BIC and assess goodness of fit with the centered coefficient of determination, $R^2$.
+where $n$ is the number of observations, $\mathrm{SSE}$ is the sum of squared residuals, and $k$ is the number of model parameters ($k = 1$ for the linear model, $k = 3$ for the nonlinear model). Lower values indicate a more parsimonious model. We report the pooled AIC and BIC and assess goodness of fit with the centered coefficient of determination, $R^2$.
 
 
 \section{Results}
 
-Table~\ref{tab:closures} lists the linear conductance $C_L$ (with bootstrapped 95\% confidence intervals) and goodness of fit $R^2_L$ for each closure with at least five daily data points ($N \ge 5$). Figure~\ref{fig:compare_fits} compares the linear and offset-power fits for the three longest closures (panels A--C) and for all closure days pooled (panel D).
-In the pooled fit, both AIC and BIC favor the $h_V$ offset-power model over the linear model ($\Delta\mathrm{AIC} = -18.4$, $\Delta\mathrm{BIC} = -10.4$).
-However, the improvement in prediction error is modest: the pooled $R^2$ increases from 0.45 (linear) to 0.48 (offset-power on $h_V$), a bootstrapped mean gain of $\Delta R^2 = +0.030$ (95\% CI $[0.013,\,0.055]$).
-Given the comparable errors, the linear model $S = C_L\,\Delta h$ provides a parsimonious baseline, while the offset-power model captures additional structure in the conductance--water-level relationship.
+Table~\ref{tab:closures} lists the linear conductance $C_L$ (with bootstrapped 95\% confidence intervals) and goodness of fit $R^2_L$ for each closure with at least five daily data points ($N \ge 5$). Figure~\ref{fig:compare_fits} compares the linear and nonlinear fits for the three longest closures (panels A--C) and for all closure days pooled (panel D).
+In the pooled fit, both AIC and BIC favor the nonlinear model over the linear model ($\Delta\mathrm{AIC} = -18.4$, $\Delta\mathrm{BIC} = -10.4$).
+However, the improvement in prediction error is modest: the pooled $R^2$ increases from 0.45 (linear) to 0.48 (nonlinear), a bootstrapped mean gain of $\Delta R^2 = +0.030$ (95\% CI $[0.013,\,0.055]$).
+Given the comparable errors, the linear model $S = C_L\,\Delta h$ provides a parsimonious baseline, while the nonlinear model captures additional structure in the conductance--water-level relationship.
 
   \begin{figure}
     \centering
-    \includegraphics[width = \textwidth]{figures/fig5_model_comparison_panels.png}
-    \caption{Comparison of seepage--head model fits for the three longest closures and for all closure days pooled. Panels (A)--(C) show the per-event linear fit (blue) for each closure: (A) a 36-day closure starting September 17, 2014 (see also Figure \ref{fig:overwash}); (B) a 29-day closure starting October 16, 2018; (C) a 31-day closure starting September 26, 2020. (D) All closure days pooled, showing the pooled linear fit (blue) and the pooled offset-power fit (orange). Panels B and C are shown in further detail in SI Figures S1 and S2 (analogous to Figure \ref{fig:overwash}). Axes: $\Delta h$ (m) versus $S$ (m$^3$ s$^{-1}$).
+    \includegraphics[width = 0.8\textwidth]{figures/fig5_model_comparison_panels.png}
+    \caption{Comparison of seepage--head model fits for the three longest closures and for all closure days pooled. Panels (A)--(C) show the per-event linear fit (blue) for each closure: (A) a 36-day closure starting September 17, 2014 (see also Figure \ref{fig:overwash}); (B) a 29-day closure starting October 16, 2018; (C) a 31-day closure starting September 26, 2020. (D) All closure days pooled, showing the pooled linear fit (blue) and the pooled nonlinear fit (orange). Panels B and C are shown in further detail in SI Figures S1 and S2 (analogous to Figure \ref{fig:overwash}). Axes: $\Delta h$ (m) versus $S$ (m$^3$ s$^{-1}$).
     }
     \label{fig:compare_fits}
 \end{figure}
 
 \begin{figure}
     \centering
-    \includegraphics[width = \textwidth]{figures/fig6_summary.png}
+    \includegraphics[width = \textwidth]{figures/summary.png}
     \caption{(A) Mean seepage rate $S$ (m$^3$ s$^{-1}$) computed for each closure, with error bars indicating bootstrapped confidence intervals on the mean.
     (B) Integrated hydraulic conductance $C_L$ (m$^2$ s$^{-1}$) determined through regression of $S$ on $\Delta h$ for each closure event.
     (C) Ratio of seepage to river discharge, $S/Q_r$.
@@ -294,7 +285,7 @@ Given the comparable errors, the linear model $S = C_L\,\Delta h$ provides a par
 Figure \ref{fig:summary} shows how the mean seepage rate $S$  (panel A) and the integrated hydraulic conductance $C_L$ (panel B) vary over time for all closures with at least five daily data points ($N \ge 5$). Seepage rates vary from 0.5 to 3.0 m$^3$/s, with the highest rates in 2017. $C_L$ remains relatively consistent across closures, ranging from 0.5 to 1.5 m$^2$/s. The highest conductance was observed in 2017, consistent with the  high seepage rates that year. In some years, $C_L$ decreases over subsequent closures (notably, in 2016 and 2017), reflecting a seasonal change in $K$, $A_b$, and/or $L_b$.
 Figure \ref{fig:summary}C shows the ratio of seepage to river discharge, $S/Q$, which ranges from 0.2 to 0.6, with significant variability both within and between years.
 
-Supporting information Figure S3 compares the results obtained with and without overwash days included in the analysis (i.e., $S$ versus $S + O$). If the data are not filtered to exclude days with wave-driven overwash, $C$ represents an integrated hydraulic conductance representing both seepage and overwash, $S + O$. $C_L$ values are smaller with overwash included, because the net water loss $O + S$ can underestimate the actual seepage $S$ when overwash offsets part of the volume change.
+Supporting information Figure S3 compares the results obtained with and without overwash days included in the analysis (i.e., $S$ versus $S + O$). If the data are not filtered to exclude days with wave-driven overwash, $C_L$ represents an integrated hydraulic conductance representing both seepage and overwash, $S + O$. $C_L$ values are smaller with overwash included, because the net water loss $O + S$ can underestimate the actual seepage $S$ when overwash offsets part of the volume change.
 Nevertheless, the results are qualitatively similar, showing the same seasonal and interannual trends in $C_L$.
 
 \begin{table}[]
@@ -305,7 +296,7 @@ Nevertheless, the results are qualitatively similar, showing the same seasonal a
 \hline
 date & duration & $N$ & $C_L$ & 95\% CI & $R^2_L$ \\
 \hline
-2014-09-17 & 37 & 28 & 0.79 & [0.70, 0.88] & 0.37 \\
+2014-09-17 & 36 & 28 & 0.79 & [0.70, 0.88] & 0.37 \\
 2020-09-26 & 31 & 25 & 0.95 & [0.90, 1.00] & 0.64 \\
 2018-10-16 & 29 & 27 & 1.02 & [0.96, 1.09] & 0.71 \\
 2015-09-08 & 27 & 23 & 0.90 & [0.79, 1.00] & 0.04 \\
@@ -345,31 +336,31 @@ date & duration & $N$ & $C_L$ & 95\% CI & $R^2_L$ \\
 
 \section{Discussion}
 
-Water loss from the Russian River estuary via seepage through the sand barrier increases with increasing head difference $\Delta h$ (see Figure \ref{fig:compare_fits}). A model comparison indicates a weak dependence of the effective conductance on estuary water level: the offset-power model is statistically favored over the constant-conductance model ($\Delta\mathrm{AIC} = -18.4$, $\Delta\mathrm{BIC} = -10.4$), but the fitted exponent is small ($b_V \approx 0.19$) and the gain in explained variance is modest (pooled $R^2$ of 0.45 versus 0.48). A small positive $b_V$ implies that rising estuary water level only weakly increases the ratio of cross-sectional flow area to flow length, $A_b/L_b$ -- either because $A_b$ and $L_b$ depend weakly on water level, or because their dependencies approximately offset. Alternatively, the weak level-dependence of conductance may reflect a preferred conduit for seepage whose geometry changes little as the estuary fills. We emphasize that these inferences are specific to the Russian River berm and carry the uncertainties inherent in a residual-based mass balance (discussed below); the near-linear dependence of seepage on head difference found here may not generalize to other ICEs, where barrier dimensions, sediment composition, and legacy structures differ, and needs further attention.
+Water loss from the Russian River estuary via seepage through the sand barrier increases with increasing head difference $\Delta h$ (see Figure \ref{fig:compare_fits}). A model comparison indicates a weak dependence of the effective conductance on estuary water level: the nonlinear model is statistically favored over the constant-conductance model ($\Delta\mathrm{AIC} = -18.4$, $\Delta\mathrm{BIC} = -10.4$), but the fitted exponent is small ($b_V \approx 0.19$) and the gain in explained variance is modest (pooled $R^2$ of 0.45 versus 0.48). A small positive $b_V$ implies that rising estuary water level only weakly increases the ratio of cross-sectional flow area to flow length, $A_b/L_b$ -- either because $A_b$ and $L_b$ depend weakly on water level, or because their dependencies approximately offset. Alternatively, the weak level-dependence of conductance may reflect a preferred conduit for seepage whose geometry changes little as the estuary fills. We emphasize that these inferences are specific to the Russian River berm and carry the uncertainties inherent in a residual-based mass balance (discussed below); the near-linear dependence of seepage on head difference found here may not generalize to other ICEs, where barrier dimensions, sediment composition, and legacy structures differ, and needs further attention.
 
-A back-of-the envelope estimate of seepage through the  sand barrier, assuming $K \approx 45$ m/day \citep[sand,][]{masters1991introduction}, $L_b \approx 300$ m, $h_b \approx 5$ m, $W_b \approx 50$ m, and $\Delta h \approx 1$ m, yields $S \approx 0.02$ m$^3$/s, which is 1-2 orders of magnitude smaller than observed $S$.  Even if the berm consists of coarse gravel with $K \approx 450$ m/day, the estimated seepage flux is  $S \approx 0.2$ m$^3$/s, which still underestimates the observed seepage rates.
-The discrepancy between these calculations and the observed $S$ suggests the barrier may include high-conductivity conduits that `pipe' water through the berm.
-Such conduits could be remnants of a failed rock-wall jetty \citep{behrens2009characterization} or naturally occurring cobble/gravel horizons beneath the berm.  It is unlikely that the berm is homogeneous, and more realistically, the value of $C$ represents an integration of non-uniform hydraulic conductance over the flow region.
+A bulk Darcy estimate, $S = K\,A_b\,\Delta h / L_b$ with the seepage cross-section $A_b = W_b\,h_b$, provides a check on the magnitude of $C$. During closures the barrier is narrowest near the mouth, so we take a cross-shore flow-path length $L_b \approx 50$~m (the mean beach width of ${\sim}107$~m reported by \citet{BehrensEtAl_2017_GoatRock} would be an upper bound), an along-shore width $W_b \approx 300$~m, and a saturated thickness $h_b \approx 5$~m (giving $A_b \approx 1500$~m$^2$), evaluated at a representative head difference $\Delta h \approx 1$~m. Generic textbook values for the nominal barrier material fall well short of the observed $S \approx 1$~m$^3$/s: a clean sand \citep[$K \approx 45$~m/day,][]{masters1991introduction} yields $S \approx 0.02$~m$^3$/s, and even a coarse gravel ($K \approx 450$~m/day) yields only $S \approx 0.16$~m$^3$/s. The materials actually sampled from this barrier are more permeable, ranging from clean poorly-graded sands ($K \approx 0.1$--$1$~cm/s) to a gravelly-sand core ($K \approx 3.6$~cm/s; see below): the cleaner sands still remain below the observed rate, whereas the gravelly-sand permeability yields $S \approx 1$~m$^3$/s, comparable to observed. Equivalently, reproducing the observed conductance $C_L \approx 1.07$~m$^2$/s with the measured gravelly-sand permeability requires a cross-section-to-path-length ratio $A_b/L_b \approx 30$~m; this simply recovers the geometry assumed above, reflecting that those dimensions were chosen to be plausible rather than providing an independent constraint on the flow path.
+
+Because the seepage data constrain only the effective conductance $C = K\,A_b/L_b$, and not the partition between the material permeability $K$ and the active geometry $A_b/L_b$, we cannot determine independently whether the bulk berm conductance is anomalous; the hydraulically active cross-section is itself unknown and may be smaller than the nominal barrier face. What the comparison does establish is that uniform clean sand cannot supply the observed seepage, whereas the gravelly material measured in the barrier can --- either if such coarse material makes up much of the active cross-section, or if flow concentrates through limited high-permeability zones; these cannot be distinguished from the conductance alone. Heterogeneous, locally coarse horizons of this kind could include cobble or gravel layers or remnants of the failed rock-wall jetty \citep{behrens2009characterization}, and $C$ is best interpreted as an integration of this non-uniform hydraulic conductance over the flow region.
 
 Independent evidence for preferential flow paths through the berm comes from a jetty feasibility study that employed seismic refraction, ground-penetrating radar, electromagnetics (EM), and electrical resistivity tomography (ERT) to characterize subsurface conditions \citep{BehrensEtAl_2017_GoatRock}.
 The study describes the barrier beach as mobile, well-sorted sand with a mean grain size of ${\sim}1$\,mm.
 EM and ERT surveys revealed hydraulically distinct zones, with stronger subsurface flows where the old seawall is absent from the beach.
-Seepage velocities were estimated from monitoring-well data to be 3--4 times faster in sections lacking the seawall (${\sim}80$--110\,m/day) than in sections where it remains intact (${\sim}25$--40\,m/day).
-Sediment cores from appendices of the report indicate high permeabilities for sampled beach material, with coefficients of permeability ranging from $K \approx 0.1$--$0.2$\,cm/s (poorly graded sand) to $K \approx 3$--$4$\,cm/s (poorly graded sand with gravel).
-These observations are consistent with heterogeneous, locally coarse horizons and potentially conduit-like pathways within the berm, particularly near the mouth opening, and support the finding that effective berm conductance exceeds values predicted from uniform-medium Darcy calculations.
+Seepage velocities estimated from monitoring-well data were approximately 3.7 times faster in sections lacking the seawall (36--50\,ft/hr, ${\approx}263$--366\,m/day) than in sections where it remains intact (10--14\,ft/hr, ${\approx}73$--102\,m/day).
+Constant-head permeameter tests on sediment cores sampled from the barrier indicate hydraulic conductivities ranging from $K \approx 0.1$--$1$\,cm/s for the clean poorly-graded sands to $K \approx 3.6$\,cm/s for a gravelly-sand core.
+These observations are consistent with heterogeneous, locally coarse horizons and potentially conduit-like pathways within the berm, particularly near the mouth opening, and support the interpretation that seepage is concentrated in the coarser, more permeable zones of an otherwise sandy barrier rather than distributed uniformly across it.
 However, we caution that this does not constitute proof of a single `pipe'; rather, it is consistent with heterogeneous, high-$K$ pathways within an otherwise sandy barrier, and the Russian River parameter values may not generalize to other ICEs.
 
- $C$ varies on both seasonal and interannual timescales, reflecting changes in berm dimensions and hydraulic conductance.
-$C$ decreases during periods in which the berm was not washed away and rebuilt, notably from 2012 to 2014 and again from 2019 to 2021 (see Figure \ref{fig:summary}).  This rebuilding of the berm can be seen in Figure \ref{fig:berm_crest}, which shows the berm crest elevation as a function of time, using data from four transects across the berm (data from Sonoma County Water Agency).  The lowest values of $C \approx0.5$ m$^2$/s occur in 2014 and 2021, before the berm was partially eroded and rebuilt in 2015 and 2022.
-To illustrate how changes in the berm shape between years  contribute to variability in $C$,  Figure \ref{fig:berm_crest}B shows images of closure events in 2012 and 2020.  High $C$ in 2012 coincide with a narrow berm, and low $C$ in 2020 coincide with a wide berm.
+ $C_L$ varies on both seasonal and interannual timescales, reflecting changes in berm dimensions and hydraulic conductance.
+$C_L$ decreases during periods in which the berm was not washed away and rebuilt, notably from 2012 to 2014 and again from 2019 to 2021 (see Figure \ref{fig:summary}).  This rebuilding of the berm can be seen in Figure \ref{fig:berm_crest}, which shows the berm crest elevation as a function of time, using data from four transects across the berm (data from Sonoma County Water Agency).  The lowest values of $C_L \approx0.5$ m$^2$/s occur in 2014 and 2021, before the berm was partially eroded and rebuilt in 2015 and 2022.
+To illustrate how changes in the berm shape between years  contribute to variability in $C_L$,  Figure \ref{fig:berm_crest}B shows images of closure events in 2012 and 2020.  High $C_L$ in 2012 coincide with a narrow berm, and low $C_L$ in 2020 coincide with a wide berm.
 
- $C$ decreases over the dry season in 2016 and 2017.
- The highest values at the start of these years followed a wet winter in which the berm was partially eroded as the mouth migrated north from the jetty, followed by rebuilding of a large portion of the berm north of the jetty. Compared with interannual changes, seasonal changes in the berm shape are relatively small  (see Figure \ref{fig:2018_closures}, showing photos of two closure events separated by approximately one month), consistent with smaller changes in  $C$  over a season than between years. Given that change in the berm dimensions is limited, larger changes in  $C$  are likely due to clogging of the sand barrier. However, if indeed the primary seepage flux is via a preferential cobble/gravel/fractured rock flow pathway, then clogging must involve sand as well as finer particles. Further research is needed to better characterize this seasonal clogging, which can be accumulated over subsequent years. Finer sediment may be transported into the berm, or reduced hydraulic conductance may result from deposition of a superficial layer of sand, e.g., an apron of sand created by wave overwash would both thicken the berm and produce a low-conductance veneer over pre-existing high-conductance `pipes'.
+ $C_L$ decreases over the dry season in 2016 and 2017.
+ The highest values at the start of these years followed a wet winter in which the berm was partially eroded as the mouth migrated north from the jetty, followed by rebuilding of a large portion of the berm north of the jetty. Compared with interannual changes, seasonal changes in the berm shape are relatively small  (see Figure \ref{fig:2018_closures}, showing photos of two closure events separated by approximately one month), consistent with smaller changes in  $C_L$  over a season than between years. Given that change in the berm dimensions is limited, larger changes in  $C_L$  are likely due to clogging of the sand barrier. However, if indeed the primary seepage flux is via a preferential cobble/gravel/fractured rock flow pathway, then clogging must involve sand as well as finer particles. Further research is needed to better characterize this seasonal clogging, which can be accumulated over subsequent years. Finer sediment may be transported into the berm, or reduced hydraulic conductance may result from deposition of a superficial layer of sand, e.g., an apron of sand created by wave overwash would both thicken the berm and produce a low-conductance veneer over pre-existing high-conductance `pipes'.
 
  \begin{figure}
     \centering
-    \includegraphics[width = \textwidth]{figures/fig7_interannual_variability.png}
-    \caption{Berm crest elevation as a function of time, showing the median (blue dots) and range of  four transects across the berm. Photos taken on November 11, 2012 and December 5, 2020, illustrating larger interannual changes in the berm shape.  In 2012, large $C$ is consistent with a narrowing berm by the jetty.  Likewise, in 2020, small $C$ is consistent with the wider berm shape.   }
+    \includegraphics[width = \textwidth]{figures/interannual_variability.png}
+    \caption{Berm crest elevation as a function of time, showing the median (blue dots) and range of  four transects across the berm. Photos taken on November 11, 2012 and December 5, 2020, illustrating larger interannual changes in the berm shape.  In 2012, large $C_L$ is consistent with a narrowing berm by the jetty.  Likewise, in 2020, small $C_L$ is consistent with the wider berm shape.   }
     \label{fig:berm_crest}
 \end{figure}
 
@@ -395,7 +386,7 @@ At this level, seepage can account for a loss of approximately 2 m$^3$/s, which 
 
 Steady-state conditions likely occurred prior to human modifications, as closures could start in spring and persist for months through the summer low-flow months. Alternatively, closure may have persisted with the estuary water level over-topping the crest of the berm (i.e., perched state), but with high seepage allowing for an overflow rate low enough that the berm was not scoured. For example, in this perched estuary state, if 0.5 m$^3$/s flowed over the sand barrier as a 10 m wide and 0.1 m deep flow with velocities below 0.5 m/s, flow would likely  not scour the sand and the barrier would remain in place.
 
-Prolonged closures allow a freshwater layer (epilimnion) to develop in the estuary, which offers critical habitat for freshwater-acclimated young steelhead \citep{largier20205}. Further, a cool, moderate-salinity metalimnion also can develop, offering habitat for smolts to grow prior to leaving the estuary and entering the ocean in the fall. The deep and cold hypolimnion becomes anoxic beneath very strong stratification that precludes mixing and re-oxygenation, without any significant photosynthetically active radiation. If the present management protocol continues under rising sea level, the maximum head difference between estuary and ocean will be reduced, and the maximum possible seepage will be further constrained.  This may result in shorter closure events, with less persistent and thinner epilimnion and metalimnion layers, reducing valuable habitat for juvenile salmonids.
+Prolonged closures allow a freshwater layer (epilimnion) to develop in the estuary, which offers critical habitat for freshwater-acclimated young steelhead \citep{largier20205}. Further, a cool, moderate-salinity metalimnion also can develop, offering habitat for smolts to grow prior to leaving the estuary and entering the ocean in the fall. The deep and cold hypolimnion becomes anoxic beneath very strong stratification that precludes mixing and re-oxygenation, without any significant photosynthetically active radiation. If the present management protocol continues under rising sea level, the maximum head difference between estuary and ocean will be reduced, and the maximum possible seepage will be further constrained.  This may result in shorter closure events, with less persistent and thinner epilimnion and metalimnion layers, reducing valuable habitat for juvenile salmonids. Because seepage is a first-order term in the closed-estuary water balance, an explicit, head-dependent estimate of it has the potential to improve operational forecasts of how quickly water level rises toward the breaching threshold, and hence the timing of managed breaches that trade flood risk against habitat value. The same head-dependence implies that sea-level rise will reduce the seepage that drains the estuary during closures, so maintaining the long closures that support salmonid habitat may increasingly depend on the management options actually available, namely the volume and timing of managed inflow and the threshold at which the berm is artificially breached.
 
  Seepage losses are likely significant in other ICEs where the water level rises significantly above the ocean water level, which occurs where river inflow exceeds evaporative losses during closure periods.  Different barrier configurations, in terms of dimensions and sediment types, are expected to result in different flow rates.  Likewise, other ICEs may exhibit differences in how $C$ changes over seasons and years, due to clogging and/or changes in berm shape. While some data exist for similar water-balance analyses in other California ICEs, new work should also include data collection that can better define and demonstrate controls on the seepage process.
 
@@ -404,44 +395,15 @@ Prolonged closures allow a freshwater layer (epilimnion) to develop in the estua
 \section{Conclusion}
 
 This study combined a multi-year record of the daily condition of the Russian River inlet, estuary water level, and river discharge data to compute seepage rates during estuary closures.
-We then estimated an integrated hydraulic conductance $C$ by regression of the seepage rate $S$ on the head difference between ocean and estuary, $\Delta h$.
+We then estimated an integrated hydraulic conductance $C_L$ by regression of the seepage rate $S$ on the head difference between ocean and estuary, $\Delta h$.
 Aggregating over 32 closure events with at least five daily data points ($N \ge 5$), we find that the average seepage rate is $S = 1.07\,\Delta h$.
-We suggest that interannual variability in $C$ reflects variations in berm shapes, and seasonal variability reflects changes in the composition and hydraulic conductance of the berm (e.g., clogging by fine particles).
+We suggest that interannual variability in $C_L$ reflects variations in berm shapes, and seasonal variability reflects changes in the composition and hydraulic conductance of the berm (e.g., clogging by fine particles).
 
 
 \section{Acknowledgments}
 We are grateful for funds and data received from the Sonoma County Water Agency to UC Davis Bodega Marine Laboratory and Environmental Science Associates for monitoring of estuary conditions in the Russian River. UC Davis is also grateful for funds received from the California Department of Parks and Recreation for monitoring and understanding water levels in Californian estuaries. The authors thank Jessica Martini-Lamb, Chris Delaney, Michael Koohafkan, and Elinor Twohy for dialog, insight, and assistance in this study.
 
 
-\appendix
-\section{Uncertainty analysis}
-
-We treat the estuary hypsometry as a stage--volume relationship $V(h)$, the estuary water volume at stage $h$, where $h$ is water level (m) and $V(h)$ is volume (m$^3$). From this hypsometric curve we compute the derivative $dV/dh(h)$, which has units of m$^3$/m $=$ m$^2$ and is interpreted as the water-surface area at stage $h$,
-\[
-A(h) \equiv \frac{dV}{dh}(h),
-\]
-so that a larger surface area implies a larger change in volume for a given change in stage.
-
-\paragraph{Propagating stage error into volume error.}
-Suppose water level has an uncertainty $\delta h$. For sufficiently small errors, a first-order (linear) approximation gives
-\[
-\delta V \approx \frac{dV}{dh}(h)\,\delta h = A(h)\,\delta h,
-\]
-where $\delta V$ is the absolute error in volume associated with a stage error $\delta h$, with units of m$^2 \cdot$ m $=$ m$^3$. In the specific example with a 10 cm stage error, $\delta h = 0.10$ m, so at each stage $h$ we estimate
-\[
-|\delta V(h)| \approx |A(h)|\,\delta h = |A(h)| \times 0.10~\text{m}.
-\]
-
-\paragraph{Percent volume error.}
-To express this as a percentage error in volume, we compare the absolute error $|\delta V(h)|$ to the actual volume $V(h)$ at that stage:
-\[
-\text{percent error}(h) = 100 \times \frac{|\delta V(h)|}{V(h)} \approx 100 \times \frac{|A(h)|\,\delta h}{V(h)}.
-\]
-For very small volumes (near an empty estuary), the ratio $|\delta V|/V(h)$ becomes ill-defined or dominated by numerical noise, so in practice we compute the percentage error only where $V(h) > \varepsilon$ for a small threshold $\varepsilon$ (e.g., $\varepsilon = 10^{-6}$ m$^3$). On those levels, the quantity
-\[
-\text{pct\_err}_{0.1\text{m}}(h) \approx 100 \times \frac{|A(h)| \times 0.10}{V(h)}
-\]
-gives the percent error in volume associated with a $\pm 0.10$ m uncertainty in water level at stage $h$.
 
  \bibliographystyle{elsarticle-harv}
  \bibliography{local.bib}
