@@ -63,8 +63,6 @@ conda activate russian-river-seepage
 | `2 Russian River – analysis` | Mass-balance seepage estimates, overwash filtering, and per-event fits |
 | `3 Seepage vs DeltaH model fits` | Linear vs offset–power model comparison with AIC/BIC and bootstrap |
 | `4 Crest` | Berm crest elevation analysis |
-| `Grouped_vs_Pooled_3models` | Pooled best-by-holdout-RMSE fits for the candidate models |
-| `Russian River - visitor center - USGS` | Comparison of visitor-center and USGS estuary gauges |
 
 ## Repository structure
 
