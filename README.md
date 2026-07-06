@@ -69,7 +69,7 @@ conda activate russian-river-seepage
 ```
 ├── data/                 # Raw, interim, and processed data
 ├── figures/              # Generated figures
-├── notebooks/            # Analysis notebooks
+├── notebooks/            # Analysis notebooks (archive/ holds superseded versions)
 ├── overleaf/             # Manuscript LaTeX source (synced with Overleaf)
 ├── references/           # Literature
 ├── scripts/              # Utility scripts (Fig 1 location map, headless notebook runner)
