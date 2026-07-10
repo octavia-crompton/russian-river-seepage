@@ -6,7 +6,7 @@ Mass-balance workflow for the Russian River estuary at Jenner, CA.
 This repository merges hydrologic and oceanographic records
 (USGS, NOAA CO-OPS, visitor-center gauge, inlet-state logs, and a stage–storage curve) to estimate seepage through the sand berm during bar-closure events.
 
-It accompanies the manuscript *Seepage through the Sand Barrier at the Mouth of the Russian River, an Intermittently Closed Estuary* (Crompton, Behrens & Largier), whose LaTeX source lives in `overleaf/` (synced with Overleaf via git).
+It accompanies the manuscript *Seepage through the Sand Barrier at the Mouth of the Russian River, an Intermittently Closed Estuary* (Crompton, Behrens & Largier).
 
 ## Approach
 
