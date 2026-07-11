@@ -8,6 +8,7 @@
 \usepackage{graphicx}
 \usepackage[colorlinks=true, allcolors=blue]{hyperref}
 \usepackage[a4paper, total={6.in, 9in}]{geometry}
+\usepackage{changes}  
 \linenumbers
 \journal{Estuaries and Coasts}
 
@@ -19,15 +20,18 @@
 
 \begin{frontmatter}
 
-    \title{Seepage through the Sand Barrier at the Mouth of the Russian River, an Intermittently Closed Estuary}
+\title{Seepage through the Sand Barrier at the Mouth of the Russian River, an Intermittently Closed Estuary}
 
-\author[ars]{Octavia Crompton}
+\author[ars]{Octavia V. Crompton\fnref{fn_oc}}
+\fntext[fn_oc]{ORCID: 0000-0002-3576-6159}
 \affiliation[ars]{organization={USDA-ARS Hydrology and Remote Sensing Laboratory}}
 
-\author[epa]{Dane Behrens}
+\author[epa]{Dane K. Behrens\fnref{fn_db}}
+\fntext[fn_db]{ORCID: 0009-0009-1030-6605}
 \affiliation[epa]{organization={Environmental Science Associates, San Francisco}}
 
-\author[bml]{John Largier}
+\author[bml]{John L. Largier\fnref{fn_jl}}
+\fntext[fn_jl]{ORCID: 0000-0003-4273-4443}
 \affiliation[bml]{organization={Bodega Marine Laboratory, Coastal \& Marine Sciences Institute, University of California Davis}}
 
 \begin{abstract}
@@ -273,6 +277,7 @@ Given the comparable errors, the linear model $S = C_L\,\Delta h$ provides a par
 
 \begin{figure}
     \centering
+    %% (John, post-review): add pooled C_L = 1.07 m^2/s as a horizontal reference line in panel B (requires regenerating figures/summary.png; not a .tex-only change).
     \includegraphics[width = \textwidth]{figures/summary.png}
     \caption{(A) Mean seepage rate $S$ (m$^3$ s$^{-1}$) computed for each closure, with error bars indicating bootstrapped confidence intervals on the mean.
     (B) Integrated hydraulic conductance $C_L$ (m$^2$ s$^{-1}$) determined through regression of $S$ on $\Delta h$ for each closure event.
@@ -338,7 +343,7 @@ date & duration & $N$ & $C_L$ & 95\% CI & $R^2_L$ \\
 
 Water loss from the Russian River estuary via seepage through the sand barrier increases with increasing head difference $\Delta h$ (see Figure \ref{fig:compare_fits}). A model comparison indicates a weak dependence of the effective conductance on estuary water level: the nonlinear model is statistically favored over the constant-conductance model ($\Delta\mathrm{AIC} = -18.4$, $\Delta\mathrm{BIC} = -10.4$), but the fitted exponent is small ($b_V \approx 0.19$) and the gain in explained variance is modest (pooled $R^2$ of 0.45 versus 0.48). A small positive $b_V$ implies that rising estuary water level only weakly increases the ratio of cross-sectional flow area to flow length, $A_b/L_b$ -- either because $A_b$ and $L_b$ depend weakly on water level, or because their dependencies approximately offset. Alternatively, the weak level-dependence of conductance may reflect a preferred conduit for seepage whose geometry changes little as the estuary fills. We emphasize that these inferences are specific to the Russian River berm and carry the uncertainties inherent in a residual-based mass balance (discussed below); the near-linear dependence of seepage on head difference found here may not generalize to other ICEs, where barrier dimensions, sediment composition, and legacy structures differ, and needs further attention.
 
-A bulk Darcy estimate, $S = K\,A_b\,\Delta h / L_b$ with the seepage cross-section $A_b = W_b\,h_b$, provides a check on the magnitude of $C$. During closures the barrier is narrowest near the mouth, so we take a cross-shore flow-path length $L_b \approx 50$~m (the mean beach width of ${\sim}107$~m reported by \citet{BehrensEtAl_2017_GoatRock} would be an upper bound), an along-shore width $W_b \approx 300$~m, and a saturated thickness $h_b \approx 5$~m (giving $A_b \approx 1500$~m$^2$), evaluated at a representative head difference $\Delta h \approx 1$~m. Generic textbook values for the nominal barrier material fall well short of the observed $S \approx 1$~m$^3$/s: a clean sand \citep[$K \approx 45$~m/day,][]{masters1991introduction} yields $S \approx 0.02$~m$^3$/s, and even a coarse gravel ($K \approx 450$~m/day) yields only $S \approx 0.16$~m$^3$/s. The materials actually sampled from this barrier are more permeable, ranging from clean poorly-graded sands ($K \approx 0.1$--$1$~cm/s) to a gravelly-sand core ($K \approx 3.6$~cm/s; see below): the cleaner sands still remain below the observed rate, whereas the gravelly-sand permeability yields $S \approx 1$~m$^3$/s, comparable to observed. Equivalently, reproducing the observed conductance $C_L \approx 1.07$~m$^2$/s with the measured gravelly-sand permeability requires a cross-section-to-path-length ratio $A_b/L_b \approx 30$~m; this simply recovers the geometry assumed above, reflecting that those dimensions were chosen to be plausible rather than providing an independent constraint on the flow path.
+A bulk Darcy estimate, $S = K\,A_b\,\Delta h / L_b$ with the seepage cross-section $A_b = W_b\,h_b$, provides a check on the magnitude of $C$. During closures the barrier is narrowest near the mouth, so we take a cross-shore flow-path length $L_b \approx 50$~m (the mean beach width of ${\sim}107$~m reported by \citet{BehrensEtAl_2017_GoatRock} would be an upper bound), an along-shore width $W_b \approx 300$~m, and a saturated thickness $h_b \approx 5$~m (giving $A_b \approx 1500$~m$^2$), evaluated at a representative head difference $\Delta h \approx 1$~m. Generic textbook values for the nominal barrier material fall well short of the observed $S \approx 1$~m$^3$/s: a clean sand \citep[$K \approx 45$~m/day,][]{masters1991introduction} yields $S \approx 0.02$~m$^3$/s, and even a coarse gravel ($K \approx 450$~m/day) yields only $S \approx 0.16$~m$^3$/s. The materials actually sampled from this barrier are more permeable, ranging from clean poorly-graded sands ($K \approx 0.1$--$1$~cm/s, ${\approx}86$--864~m/day) to a gravelly-sand core ($K \approx 3.6$~cm/s, ${\approx}3100$~m/day; see below): the cleaner sands still remain below the observed rate, whereas the gravelly-sand permeability yields $S \approx 1$~m$^3$/s, comparable to observed. Equivalently, reproducing the observed conductance $C_L \approx 1.07$~m$^2$/s with the measured gravelly-sand permeability requires a cross-section-to-path-length ratio $A_b/L_b \approx 30$~m; this simply recovers the geometry assumed above, reflecting that those dimensions were chosen to be plausible rather than providing an independent constraint on the flow path.
 
 Because the seepage data constrain only the effective conductance $C = K\,A_b/L_b$, and not the partition between the material permeability $K$ and the active geometry $A_b/L_b$, we cannot determine independently whether the bulk berm conductance is anomalous; the hydraulically active cross-section is itself unknown and may be smaller than the nominal barrier face. What the comparison does establish is that uniform clean sand cannot supply the observed seepage, whereas the gravelly material measured in the barrier can --- either if such coarse material makes up much of the active cross-section, or if flow concentrates through limited high-permeability zones; these cannot be distinguished from the conductance alone. Heterogeneous, locally coarse horizons of this kind could include cobble or gravel layers or remnants of the failed rock-wall jetty \citep{behrens2009characterization}, and $C$ is best interpreted as an integration of this non-uniform hydraulic conductance over the flow region.
 
@@ -355,7 +360,7 @@ $C_L$ decreases during periods in which the berm was not washed away and rebuilt
 To illustrate how changes in the berm shape between years  contribute to variability in $C_L$,  Figure \ref{fig:berm_crest}B shows images of closure events in 2012 and 2020.  High $C_L$ in 2012 coincide with a narrow berm, and low $C_L$ in 2020 coincide with a wide berm.
 
  $C_L$ decreases over the dry season in 2016 and 2017.
- The highest values at the start of these years followed a wet winter in which the berm was partially eroded as the mouth migrated north from the jetty, followed by rebuilding of a large portion of the berm north of the jetty. Compared with interannual changes, seasonal changes in the berm shape are relatively small  (see Figure \ref{fig:2018_closures}, showing photos of two closure events separated by approximately one month), consistent with smaller changes in  $C_L$  over a season than between years. Given that change in the berm dimensions is limited, larger changes in  $C_L$  are likely due to clogging of the sand barrier. However, if indeed the primary seepage flux is via a preferential cobble/gravel/fractured rock flow pathway, then clogging must involve sand as well as finer particles. Further research is needed to better characterize this seasonal clogging, which can be accumulated over subsequent years. Finer sediment may be transported into the berm, or reduced hydraulic conductance may result from deposition of a superficial layer of sand, e.g., an apron of sand created by wave overwash would both thicken the berm and produce a low-conductance veneer over pre-existing high-conductance `pipes'.
+ The highest values at the start of these years followed a wet winter in which the berm was partially eroded as the mouth migrated north from the jetty, followed by rebuilding of a large portion of the berm north of the jetty. Compared with interannual changes, seasonal changes in the berm shape are relatively small  (see Figure \ref{fig:2018_closures}, showing photos of two closure events separated by approximately one month), consistent with smaller changes in  $C_L$  over a season than between years. Given that change in the berm dimensions is limited, larger changes in  $C_L$  are likely due to clogging of the sand barrier. Seasonal declines in $C_L$ may also reflect progressive thickening of the berm during winters when it is not washed away and rebuilt, which lengthens the seepage flow path $L_b$ and lowers conductance independently of clogging. However, if indeed the primary seepage flux is via a preferential cobble/gravel/fractured rock flow pathway, then clogging must involve sand as well as finer particles. Further research is needed to better characterize this seasonal clogging, which can be accumulated over subsequent years. Finer sediment may be transported into the berm, or reduced hydraulic conductance may result from deposition of a superficial layer of sand, e.g., an apron of sand created by wave overwash would both thicken the berm and produce a low-conductance veneer over pre-existing high-conductance `pipes'.
 
  \begin{figure}
     \centering
@@ -376,6 +381,7 @@ In the absence of wave overwash,  day-to-day variability in $S$ is on the order 
 (ii) unaccounted for wave overwash events,
 (iii) groundwater exchange, and
 (iv) differences in ocean water level between Point Reyes gauge and the Russian River mouth associated with wind and wave setup.
+Wind-driven tilting of the estuary water surface is a further potential source of error: a prior data report observed surface tilts of ${\sim}5$~cm under the sea breeze, so on windy days the gauge may register a lower $h$ and hence an apparent change in volume; by a rough estimate this bias is of order 0.1 m$^3$/s, comparable to the $Q_r$ error and to residual overwash.
 We assessed whether errors in ocean level estimates due to wind or wave setup could  explain outliers in $S$ estimates, and found no clear relationship with short-lived wind or wave events that may account for local water level setup.
 While unlikely to change the above-described mass balance that exhibits a tight relation between head and through-berm seepage, the role of groundwater fluxes remains an uncertainty in general and it may be an important term in other intermittently closed estuaries.
 
@@ -400,8 +406,27 @@ Aggregating over 32 closure events with at least five daily data points ($N \ge 
 We suggest that interannual variability in $C_L$ reflects variations in berm shapes, and seasonal variability reflects changes in the composition and hydraulic conductance of the berm (e.g., clogging by fine particles).
 
 
-\section{Acknowledgments}
+
+\subsection*{Acknowledgments}
 We are grateful for funds and data received from the Sonoma County Water Agency to UC Davis Bodega Marine Laboratory and Environmental Science Associates for monitoring of estuary conditions in the Russian River. UC Davis is also grateful for funds received from the California Department of Parks and Recreation for monitoring and understanding water levels in Californian estuaries. The authors thank Jessica Martini-Lamb, Chris Delaney, Michael Koohafkan, and Elinor Twohy for dialog, insight, and assistance in this study.
+
+\section*{Statements and Declarations}
+
+\subsection*{Funding}
+This work was supported by the Sonoma County Water Agency (funding to the University of California Davis Bodega Marine Laboratory and to Environmental Science Associates for monitoring of estuary conditions in the Russian River) and by the California Department of Parks and Recreation (funding to the University of California Davis for monitoring and understanding water levels in California estuaries).
+
+\subsection*{Author Contributions}
+O.V.C.: conceptualization, methodology, software, formal analysis, investigation, visualization, writing -- original draft, writing -- review and editing; D.K.B.: conceptualization, data curation, writing -- review and editing; J.L.: conceptualization, funding acquisition, writing -- review and editing. All authors read and approved the submitted version.
+
+\subsection*{Data Availability}
+The processed data and analysis code supporting this study are available at \url{https://github.com/octavia-crompton/russian-river-seepage}.
+
+\subsection*{Ethics Approval}
+Not applicable. This study did not involve human participants, animal subjects, or protected plant species.
+
+\subsection*{Competing Interests}
+The authors declare no competing interests.
+
 
 
 
