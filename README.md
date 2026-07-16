@@ -58,7 +58,7 @@ conda activate russian-river-seepage
 
 | Notebook | Description |
 |---|---|
-| `0 Model description - two models` | Derivation and notation for the linear and offset–power seepage models |
+| `0 Model description – two models` | Derivation and notation for the linear and offset–power seepage models |
 | `1 Russian River – merge data` | Merge and align hydrologic/oceanographic time series |
 | `2 Russian River – analysis` | Mass-balance seepage estimates, overwash filtering, and per-event fits |
 | `3 Seepage vs DeltaH model fits` | Linear vs offset–power model comparison with AIC/BIC and bootstrap |
